@@ -1,0 +1,75 @@
+body {
+    background-color: #FFFFFF; 
+  font-family: 'EB Garamond';
+  color: #111111;
+  
+  }
+  
+  a{
+    text-decoration: none;
+    line-height: 1.3em;
+    color:#3d4254;
+    font-size:1.05em;}
+  
+  a:link {text-decoration: none;}
+  a:visited {text-decoration: none;}
+  a:active {text-decoration: none;}
+  a:hover{color:#808000;}
+  
+  a.reverse{ 
+    color:#848484; 
+    font-size:1em;
+  } 
+  
+  a.reverse:hover{color:#808000;}
+  
+  u {    
+      border-bottom: 1px dotted #848484;
+      text-decoration: none;
+  }
+  
+    
+  .graylink{ 
+    color : rgb(155, 154, 154);
+  }
+  
+  authors{
+    line-height:1.3em;
+    color:#848484;
+    font-size:.8em;
+    padding-top:2em;
+  } 
+  
+.container { width: 900px; margin: 0 auto; display: inline-block;}
+.left { float: left; width: 450px; }
+.right { float: right; width: 450px; } 
+.center { margin: 0 auto; } 
+.clear { clear: both; }
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.btn {
+    border: none;
+    background-color: inherit;
+    padding: 2px 80px;
+    font-size: 15px;
+    font-family: 'EB Garamond';
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    color : rgb(155, 154, 154);
+  }
+
+  .btn:hover {
+    color : #808000;;
+  }
