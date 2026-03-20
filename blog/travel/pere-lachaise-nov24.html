@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Cimetière du Père Lachaise — meghabytes</title>
+  <meta name="description" content="A November walk through Père Lachaise cemetery in Paris — Chopin, Oscar Wilde, autumn light, and the sounds of rain on stone.">
+  <meta name="author" content="Megha Srivastava">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #F5F1EB;
+      --color-text: #2A2623;
+      --color-text-secondary: #706862;
+      --color-accent: #8B6B4A;
+      --color-border: #DDD5CB;
+      --color-caption: #918780;
+      --color-bg: #FAF7F2;
+      --color-text: #2C2825;
+      --color-text-secondary: #6B6560;
+      --color-accent: #808A3B;
+      --color-accent-hover: #6B7432;
+      --color-border: #E5DDD4;
+      --color-someday: #C4BAB0;
+      --font-display: 'Lora', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.75;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      padding: 2rem 2rem 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .site-header nav {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .site-header nav a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 3rem 1rem 0;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .hero-text {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 0;
+    }
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 2rem);
+      line-height: 1.12;
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: 0.4rem;
+    }
+    .hero-text .location {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 1rem;
+    }
+    .hero-text .meta {
+      font-size: 0.82rem;
+      color: var(--color-caption);
+      letter-spacing: 0.02em;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ── Prose ── */
+    .prose {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+    .prose p {
+      margin-bottom: 1.5rem;
+    }
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+    .prose a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .prose em {
+      font-style: italic;
+    }
+
+    /* ── Opening paragraph (styled differently) ── */
+    .prose.opening {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: var(--color-text);
+    }
+
+    /* ── Blockquote / epitaph ── */
+    .prose blockquote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--color-text-secondary);
+      border-left: 3px solid var(--color-accent);
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    /* ── Full-width images ── */
+    .photo {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .photo img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ── Narrower images (for portraits and single shots within prose) ── */
+    .photo.narrow {
+      max-width: 720px;
+      padding: 0 2rem;
+    }
+
+    /* ── Photo grid (2x3) ── */
+    .photo-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .photo-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      aspect-ratio: 3/2;
+    }
+    .photo-grid img.portrait {
+      aspect-ratio: 2/3;
+    }
+
+    /* ── Two-up images ── */
+    .photo-pair {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .photo-pair img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ── Grave entries (image + caption) ── */
+    .grave-entry {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .grave-entry img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+    }
+    .grave-entry .caption {
+      font-size: 0.92rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      margin-top: 0.8rem;
+    }
+    .grave-entry .caption strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    /* ── Spacers ── */
+    .spacer { height: 2.5rem; }
+    .spacer-lg { height: 4rem; }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      border-top: 1px solid var(--color-border);
+      max-width: 900px;
+      margin: 2rem auto 0;
+    }
+    .site-footer a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    /* ── Fade-in animation ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 639px) {
+      .hero-text { padding: 2rem 1.5rem 0; }
+      .prose { padding: 2rem 1.5rem; }
+      .grave-entry { padding: 0 1.5rem; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav><a href="/">meghabytes</a> · travel</nav>
+  </header>
+
+  <!-- Hero Image -->
+
+
+  <!-- Title Block -->
+  <div class="hero-text fade-in">
+    <h1>Le Cimetière du Père Lachaise</h1>
+    <p class="location">Paris, France</p>
+    <p class="meta">Megha Srivastava · November 2024</p>
+  </div>
+
+    <div class="hero fade-in">
+    <img src="images/01-hero-cemetery.jpg" alt="Père Lachaise cemetery in autumn light" loading="eager">
+  </div>
+
+  <!-- Opening Prose -->
+  <div class="prose fade-in">
+    <p>In Paris, November is a mixture of crisp air filled with rain and candied chestnuts. Gloomy trees sulk with their last remaining pieces of fall colors, and the first few sparkly days of marchés de Noël begin. The afternoons are slower, still, hesitant… a deep breath before the upcoming holiday chaos. And the early sunsets create the perfect golden light for a 4:00pm pilgrimage to the grave of Frédéric Chopin (composer of étude op. 10 no. 3 in e major and nocturne no. 19 in e minor). Did you know his heart is buried in Warsaw? A few steps away, unnamed headstones are constricted by twisting branches.</p>
+  </div>
+
+  <!-- Second image -->
+  <div class="photo fade-in">
+    <img src="images/02-headstones.jpg" alt="Headstones among twisting branches" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>It's easy to get lost in Le Cimetière du Père Lachaise. Even Bus 69, which we took after a lazy morning well spent at Marché des Enfants Rouges, and which was filled with chaotic laughter of what I think was a German middle school group, had multiple quiet pauses along the left solemn stone walls. One could easily get lost without a map or a plan. The visitors are quiet, but the birds and the leaf rustling and occasional raindrops are loud.</p>
+  </div>
+
+  <!-- Cemetery path -->
+  <div class="photo fade-in">
+    <img src="images/03-cemetery-path.jpg" alt="A path through Père Lachaise" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>The first scene that comes to mind is <a href="https://www.youtube.com/watch?v=HqI78f2DYdc">Godric's Hollow</a>, and how Alexandre Desplat perfectly captured the pain of loss and the fear of the unknown, even when the warmth of the holiday season is right around the corner. That reminds me of November 2020, when Covid-19 was at its peak in California, and I took long, early evening walks around campus listening to Evermore and feeling scared. I don't think I ever fully processed the pandemic. Ages ago in France, potatoes were thought to give people the plague. Antoine-Augustin Parmentier, a pharmacist who popularized potatoes and is mistakenly thought to have invented the french fry, is buried at Père Lachaise. People bring potatoes to his grave.</p>
+  </div>
+
+  <!-- Photo grid (6 images, 2 rows of 3) -->
+  <div class="photo-grid fade-in">
+    <img src="images/04-grid-1.jpg" alt="Cemetery detail" loading="lazy">
+    <img src="images/05-grid-2.jpg" alt="Cemetery detail" loading="lazy">
+    <img src="images/06-grid-3.jpg" alt="Cemetery detail" loading="lazy">
+    <img src="images/07-grid-4.jpg" alt="Cemetery detail" loading="lazy">
+    <img src="images/08-grid-5.jpg" alt="Cemetery detail" loading="lazy">
+    <img src="images/09-grid-6.jpg" alt="Cemetery detail" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>The second scene that comes to mind is a September walk in Reykjavík. The sun was setting early, and the streets were damp and quiet. This was ages ago, before the tourist boom in Iceland. It was my first time exploring a city solo. As a Californian, I'm not used to that kind of chill in the air. I was scared and lonely until stumbling into the Hallgrímskirkja, which wasn't necessarily comforting visually (it's actually quite frightening architecturally), but because it's a place where people gather together. Similarly, while I am unsettled navigating a labyrinth of tombstones, I am comforted by the carefully tended graves, the rose petals and candles, and the intricately carved names.</p>
+  </div>
+
+  <div class="photo fade-in">
+    <img src="images/10-tended-graves.jpg" alt="Carefully tended graves with autumn leaves" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>The third scene that comes to mind is the Quinault Rainforest. I've never heard a more beautiful orchestra than a storm in Olympic National Park! Each raindrop lands with satisfaction and music. Some fall down onto little pools of water on the ground like bells, some fall down onto strong leaves of evergreen Fir trees like cymbals, some fall down onto moss like a soft mallet hitting a marimba. The rain is the entire percussion section!</p>
+  </div>
+
+  <div class="photo fade-in">
+    <img src="images/11-rainforest-light.jpg" alt="Light filtering through the cemetery" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>The air gets crisper and my fingers inside my gloves are numb.</p>
+  </div>
+
+  <div class="photo fade-in">
+    <img src="images/12-crisp-air.jpg" alt="Cemetery in the crisp November air" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>I think about the most beautiful Autumn colors I've ever seen. Seattle? Boston? Even in Los Angeles, in the San Fernando Valley, there are quiet little streets that become lined with gold.</p>
+  </div>
+
+  <div class="photo-pair fade-in">
+    <img src="images/13-autumn-1.jpg" alt="Autumn colors at Père Lachaise" loading="lazy">
+    <img src="images/14-autumn-2.jpg" alt="Golden leaves in the cemetery" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>One of my most recurring nightmares are when the scars on trees, like birch trees, gradually transform into eyes.</p>
+  </div>
+
+  <div class="photo fade-in">
+    <img src="images/15-tree-scars.jpg" alt="Scars on a tree trunk" loading="lazy">
+  </div>
+
+  <div class="prose fade-in">
+    <p>Père Lachaise is filled with beautiful marble sculptures, and I feel like I am actually walking in a museum set within a forest.</p>
+  </div>
+
+  <div class="photo-pair fade-in">
+    <img src="images/16-sculpture-1.jpg" alt="Marble sculpture at Père Lachaise" loading="lazy">
+    <img src="images/17-sculpture-2.jpg" alt="Marble sculpture detail" loading="lazy">
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <!-- Individual grave entries -->
+  <div class="grave-entry fade-in">
+    <img src="images/18-arbelot.jpg" alt="Grave of Fernand Arbelot" loading="lazy">
+    <p class="caption"><strong>Fernand Arbelot</strong> (1880–1942) was a musician, artist, and architect, who wanted to be buried forever gazing into his wife's face.</p>
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <div class="grave-entry fade-in">
+    <img src="images/19-le-royer.jpg" alt="Grave of Philippe Élie Le Royer" loading="lazy">
+    <p class="caption"><strong>Philippe Élie Le Royer</strong> (1816–1897) was once the president of the French Senate, representing the French Left.</p>
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <div class="grave-entry fade-in">
+    <img src="images/20-delcous.jpg" alt="Grave of Louis-Désiré Delcous" loading="lazy">
+    <p class="caption"><strong>Louis-Désiré Delcous</strong> (1847–1931) was a wine merchant, and an honorary secretary general of the Union of Wholesale Trade of Wines of the Seine.</p>
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <div class="grave-entry fade-in">
+    <img src="images/21-talma.jpg" alt="Grave of François-Joseph Talma" loading="lazy">
+    <p class="caption"><strong>François-Joseph Talma</strong> (1763–1826) was an actor whose big debut was in Voltaire's tragedy Mahomet, a play that is still controversial.</p>
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <div class="grave-entry fade-in">
+    <img src="images/22-denon.jpg" alt="Grave of Vivant Denon" loading="lazy">
+    <p class="caption"><strong>Vivant Denon</strong> (1747–1825) was an artist, writer, and archaeologist, who gave up his law profession when he realized his preference for art, and subsequently wrote <em>Voyage dans la basse et la haute Égypte</em>.</p>
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <!-- Oscar Wilde -->
+  <div class="prose fade-in">
+    <p>And then there was Oscar Wilde (1854–1900). An Irish playwright, poet, and writer, buried in Paris after exile. Looming above already dramatic neoclassical chapels the size of telephone booths is his tomb with the epitaph:</p>
+    <blockquote>
+      And alien tears will fill for him<br>
+      Pity's long-broken urn,<br>
+      For his mourners will be outcast men,<br>
+      And outcasts always mourn
+    </blockquote>
+  </div>
+
+  <div class="photo fade-in">
+    <img src="images/23-oscar-wilde.jpg" alt="The tomb of Oscar Wilde at Père Lachaise" loading="lazy">
+  </div>
+
+  <div class="spacer-lg"></div>
+
+  <footer class="site-footer">
+    <p>Written by <a href="/">Megha Srivastava</a> · megha at cs dot stanford dot edu</p>
+  </footer>
+
+  <script>
+    // Simple fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Collection of Small Museums — meghabytes</title>
+  <meta name="description" content="My favorite small museums around the world, from ancient Greek technology in Crete to self-playing instruments in Utrecht.">
+  <meta name="author" content="Megha Srivastava">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAF7F2;
+      --color-text: #2C2825;
+      --color-text-secondary: #6B6560;
+      --color-accent: #B85C3A;
+      --color-accent-light: #D4896E;
+      --color-border: #E5DDD4;
+      --color-card-bg: #FFFFFF;
+      --color-tag: #EDE7DF;
+      --color-bg: #FAF7F2;
+      --color-text: #2C2825;
+      --color-text-secondary: #6B6560;
+      --color-accent: #808A3B;
+      --color-accent-hover: #6B7432;
+      --color-border: #E5DDD4;
+      --color-someday: #C4BAB0;
+      --font-display: 'Lora', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      padding: 2rem 2rem 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .site-header nav {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+
+    .site-header nav a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 4vw, 3rem);
+      line-height: 1.08;
+      font-weight: 400;
+      color: var(--color-text);
+      margin-bottom: 1rem;
+    }
+
+    .hero .subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .meta {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.02em;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ── Hero Image ── */
+    .hero-image {
+      max-width: 750px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .hero-image figcaption {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* ── Prose ── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .prose p {
+      margin-bottom: 1.4rem;
+    }
+
+    .prose .note {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--color-text-secondary);
+      border-left: 3px solid var(--color-accent-light);
+      padding-left: 1rem;
+      margin: 2rem 0;
+    }
+
+    .prose hr {
+      border: none;
+      height: 1px;
+      background: var(--color-border);
+      margin: 3rem auto;
+      max-width: 120px;
+    }
+
+    /* ── Museum Cards ── */
+    .museums-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .museum-card {
+      background: var(--color-card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .museum-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .museum-card.has-image {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .museum-card.has-image {
+        grid-template-columns: 300px 1fr;
+      }
+      .museum-card.has-image:nth-child(even) {
+        grid-template-columns: 1fr 300px;
+      }
+      .museum-card.has-image:nth-child(even) .museum-card__image {
+        order: 2;
+      }
+    }
+
+    .museum-card__image {
+      overflow: hidden;
+      min-height: 220px;
+    }
+
+    .museum-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .museum-card:hover .museum-card__image img {
+      transform: scale(1.03);
+    }
+
+    .museum-card__body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .museum-card__name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+      color: var(--color-text);
+    }
+
+    .museum-card__location {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-accent);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .museum-card__desc {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .museum-card__caption {
+      font-size: 0.78rem;
+      color: var(--color-text-secondary);
+      font-style: italic;
+      margin-top: 0.5rem;
+      padding: 0 2rem 1rem;
+    }
+
+    /* ── Compact cards (no image) ── */
+    .museum-card.compact .museum-card__body {
+      padding: 1.5rem 2rem;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      border-top: 1px solid var(--color-border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .site-footer a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    /* ── Animations ── */
+    .museum-card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .museum-card:nth-child(1)  { animation-delay: 0.05s; }
+    .museum-card:nth-child(2)  { animation-delay: 0.1s; }
+    .museum-card:nth-child(3)  { animation-delay: 0.15s; }
+    .museum-card:nth-child(4)  { animation-delay: 0.2s; }
+    .museum-card:nth-child(5)  { animation-delay: 0.25s; }
+    .museum-card:nth-child(6)  { animation-delay: 0.3s; }
+    .museum-card:nth-child(7)  { animation-delay: 0.35s; }
+    .museum-card:nth-child(8)  { animation-delay: 0.4s; }
+    .museum-card:nth-child(9)  { animation-delay: 0.45s; }
+    .museum-card:nth-child(10) { animation-delay: 0.5s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 639px) {
+      .hero { padding: 3rem 1.5rem 1.5rem; }
+      .prose { padding: 0 1.5rem; }
+      .museums-grid { padding: 0 1rem 3rem; }
+      .museum-card__body { padding: 1.5rem; }
+      .museum-card__image { min-height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav><a href="/">meghabytes</a> · travel</nav>
+  </header>
+
+  <section class="hero">
+    <h1>My Collection of Small Museums</h1>
+    <p class="subtitle">A list of my favorite small museums around the world.</p>
+  </section>
+
+  <figure class="hero-image">
+    <img src="images/emily-dickinson-house.jpg" alt="Emily Dickinson's house and museum in Amherst" loading="eager">
+    <figcaption>Emily Dickinson's house and museum in Amherst, the United States.</figcaption>
+  </figure>
+
+  <article class="prose">
+    <p>Large museums, such as the Met or the Hermitage, hold impressive collections that can feel curated for both everyone and no one at all. Their galleries tell stories of a "universal" culture, often guided by state agendas and global prestige.</p>
+
+    <p>On the other hand, small museums feel kind of confessional. They hold the deep obsessions of a single person, town, or community. They are the homes of a local artist, the remnants of a vanished industry, or simply a strange collection that someone loved too much to let go of. I love how small museums are filled with stories that don't necessarily need to be grand in order to be meaningful.</p>
+
+    <p>On a more practical level, I also find small museums far more peaceful to visit when solo traveling. Long queues are replaced by a friendly chat with the lone receptionist. Instead of being herded from masterpiece to masterpiece, you get to wander at your own pace (with a squeaky floorboard for company). There's maybe a sleepy cat by the hand-painted sign pointing to the exit :)</p>
+
+    <p>Below is a constantly-updated list of my favorite small museums around the world. Please email me with recommendations!</p>
+
+
+    <hr>
+  </article>
+
+  <section class="museums-grid">
+
+    <!-- Museum of Ancient Greek Technology -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Museum of Ancient Greek Technology</h2>
+        <p class="museum-card__location">Heraklion, Greece</p>
+        <p class="museum-card__desc">This museum is filled with working models of ancient Greek inventions, and is such a fun way to interact with the ingenuity of ancient Greek scientists. This included water clocks, the Antikythera analog "computer", and a Pythagorean cup that completely drains after being filled above a certain limit!</p>
+      </div>
+    </div>
+
+    <!-- Collection de l'Art Brut -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/art-brut-forestier.jpg" alt="Sculpture by Auguste Forestier at Collection de l'Art Brut" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Collection de l'Art Brut</h2>
+        <p class="museum-card__location">Lausanne, Switzerland</p>
+        <p class="museum-card__desc">I could spend hours in this museum! I visited this collection shortly after taking a "Literature and Psychosis" course at Stanford, where we learned how the Nazis mocked modernist art as being similar to art of the mentally ill. This collection creates space for art made by psychiatric hospital patients, and one of my favorite pieces was a pair of beautifully embroidered gloves from Dunya Hirschter, who was diagnosed with schizophrenia.</p>
+      </div>
+    </div>
+
+    <!-- Bletchley Park -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/bletchley-park-bombe.jpg" alt="The Bombe machine at Bletchley Park" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Bletchley Park</h2>
+        <p class="museum-card__location">Milton Keynes, United Kingdom</p>
+        <p class="museum-card__desc">As a computer science student, visiting Bletchley Park felt somewhat like a pilgrimage. While it was wonderful to see Turing's desk and an Enigma machine, the true highlights including seeing Turing's original paper on reaction-diffusion models, as well the work rooms of the female codebreakers, or "Wrens", complete with audio accounts.</p>
+      </div>
+    </div>
+
+    <!-- Tenement Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Tenement Museum</h2>
+        <p class="museum-card__location">New York City, United States</p>
+        <p class="museum-card__desc">A preserved apartment building in the Lower East Side that tells the stories of immigrants who once lived there, with a really touching surprise at the end of the tour.</p>
+      </div>
+    </div>
+
+    <!-- Museum Speelklok -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/speelklok-rabbit.jpg" alt="Self-playing musical instrument with rabbit at Museum Speelklok" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Museum Speelklok</h2>
+        <p class="museum-card__location">Utrecht, Netherlands</p>
+        <p class="museum-card__desc">A whimsical museum of self-playing instruments! Exhibits range from cabinets with small music boxes to giant ballrooms filled with 10-foot wide self-playing dance organs.</p>
+      </div>
+    </div>
+
+    <!-- Aftel Archive -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Aftel Archive of Curious Scents</h2>
+        <p class="museum-card__location">Berkeley, United States</p>
+        <p class="museum-card__desc">A collection of random scents from around the world (e.g. ambergris), kind of like visiting both an apothecary and perfumerie. I sadly tested positive for COVID-19 right after visiting…which explains why I couldn't enjoy many of the scents!</p>
+      </div>
+    </div>
+
+    <!-- Himalayan Mountaineering Institute -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Himalayan Mountaineering Institute</h2>
+        <p class="museum-card__location">Darjeeling, India</p>
+        <p class="museum-card__desc">Surrounded by beautiful mountain views and mist, this museum celebrates the sherpas and climbers of mountains like Everest, and even has Tenzing Norgay's axe! It runs mountaineering programs for the community as well.</p>
+      </div>
+    </div>
+
+    <!-- Esperanto Museum -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/esperanto-poster.jpg" alt="Esperanto poster at the Esperanto Museum in Vienna" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Esperanto Museum of the Austrian National Library</h2>
+        <p class="museum-card__location">Vienna, Austria</p>
+        <p class="museum-card__desc">Esperanto is the world's most successful constructed language, but I never knew its optimistic and political roots until I visited this museum. For example, many socialist and anarchists supported Esperanto as part of a resistance towards nationalism, and the language was severely repressed by different fascist regimes (Hitler even wrote about it). The museum does a lovely job covering Esperanto's history.</p>
+      </div>
+    </div>
+
+    <!-- Chemical Heritage Foundation -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Chemical Heritage Foundation</h2>
+        <p class="museum-card__location">Philadelphia, United States</p>
+        <p class="museum-card__desc">I visited this museum back when I was a huge chemistry nerd and wanted to study materials science in college. In addition to having exhibits for different elements, there is a fascinating display of chemistry kits for American kids created during the Cold War.</p>
+      </div>
+    </div>
+
+    <!-- Globe Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Globe Museum of the Austrian National Library</h2>
+        <p class="museum-card__location">Vienna, Austria</p>
+        <p class="museum-card__desc">The only museum devoted to globes in the world, this museum was where I first learned that for quite a long time people thought California was an island — many of the globes show it completely detached from what is now mainland United States!</p>
+      </div>
+    </div>
+
+    <!-- Museum of Chocolate -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Museum of Chocolate and Confectionary</h2>
+        <p class="museum-card__location">Boston, United States</p>
+        <p class="museum-card__desc">This is a tiny, cute museum tucked away in Davis Square, and has different kinds of chocolate and candy molds.</p>
+      </div>
+    </div>
+
+    <!-- Marble Palace -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Marble Palace</h2>
+        <p class="museum-card__location">Kolkata, India</p>
+        <p class="museum-card__desc">The Marble Palace is such a beautifully romantic building, but unfortunately no photographs were allowed. There are parrots in the garden and gorgeous European architecture.</p>
+      </div>
+    </div>
+
+    <!-- Arrowtown -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Arrowtown Chinese Settlement</h2>
+        <p class="museum-card__location">Arrowtown, New Zealand</p>
+        <p class="museum-card__desc">When driving around the South Island, Arrowtown is a great stop for pies, yellow fall colors, and history that is often glossed over. This museum preserves the huts and kitchens of 1800's Chinese gold miners.</p>
+      </div>
+    </div>
+
+    <!-- Nutcracker Museum -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/nutcracker-museum.jpg" alt="Nutcrackers from around the world at the Nutcracker Museum" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Nutcracker Museum</h2>
+        <p class="museum-card__location">Leavenworth, United States</p>
+        <p class="museum-card__desc">I really recommend visiting this during Christmas time, when Leavenworth is filled with festivities and sparkles in the snow. There are so many different nutcrackers — kings/queens, animals, aliens, etc.</p>
+      </div>
+    </div>
+
+    <!-- Haveli Mirza Ghalib -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Haveli Mirza Ghalib</h2>
+        <p class="museum-card__location">New Delhi, India</p>
+        <p class="museum-card__desc">The simple home of Ghalib, including his desk where he wrote ghazals during the rise of British rule in the subcontinent.</p>
+      </div>
+    </div>
+
+    <!-- Center for Wooden Boats -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/wooden-boats.jpg" alt="Historic boats at the Center for Wooden Boats" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">The Center for Wooden Boats</h2>
+        <p class="museum-card__location">Seattle, United States</p>
+        <p class="museum-card__desc">I had walked by this building on the shores of Lake Union so many times before I finally stepped in, and loved seeing all the vintage boats. Sometimes they let you ride them out onto the water!</p>
+      </div>
+    </div>
+
+    <!-- Jorasanko Thakur Bari -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Jorasanko Thakur Bari</h2>
+        <p class="museum-card__location">Kolkata, India</p>
+        <p class="museum-card__desc">This museum is the family home of Rabindranath Tagore, who was the first non-European to win the Nobel Prize of Literature.</p>
+      </div>
+    </div>
+
+    <!-- Musée Mechanique -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Musée Mechanique</h2>
+        <p class="museum-card__location">San Francisco, United States</p>
+        <p class="museum-card__desc">Tucked besides Fisherman's Wharf, this museum is stuffed with antique coin-operated machines, including creepy fortune tellers.</p>
+      </div>
+    </div>
+
+    <!-- Thread Garden -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Thread Garden</h2>
+        <p class="museum-card__location">Ooty, India</p>
+        <p class="museum-card__desc">This private collection consists of a huge variety of "plants" and "flowers" created completely out of thread! The precision is incredible, and you can even buy miniatures to take home.</p>
+      </div>
+    </div>
+
+    <!-- Isabella Stewart Gardner Museum -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/el-jaleo-gardner.jpg" alt="El Jaleo by Sargent at the Isabella Stewart Gardner Museum" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Isabella Stewart Gardner Museum</h2>
+        <p class="museum-card__location">Boston, United States</p>
+        <p class="museum-card__desc">A pretty popular museum in Boston, especially because of its gorgeous courtyard, this museum is the private collection of the (infamous?) Isabella Stewart Gardner, including the amazing El Jaleo painting.</p>
+      </div>
+    </div>
+
+    <!-- Museo archeologico dell'Alto Adige -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Museo archeologico dell'Alto Adige</h2>
+        <p class="museum-card__location">Bolzano, Italy</p>
+        <p class="museum-card__desc">The home of Ötzi the Iceman, a 5,300-year-old mummy found in the Alps! I really liked how interactive the museum was.</p>
+      </div>
+    </div>
+
+    <!-- Hospital in the Rock -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Hospital in the Rock</h2>
+        <p class="museum-card__location">Budapest, Hungary</p>
+        <p class="museum-card__desc">This was a WWII hospital hidden within a cave system, and kind of hard to find on the Buda-side of the river, making the museum feel more eerie.</p>
+      </div>
+    </div>
+
+    <!-- Chora Church -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/chora-church.jpg" alt="Gold mosaics at the Chora Church in Istanbul" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Chora Church</h2>
+        <p class="museum-card__location">Istanbul, Turkey</p>
+        <p class="museum-card__desc">This church is home to incredible Byzantine mosaics and frescoes. It is quite far from the tourist path, and we got lost 3 times finding it.</p>
+      </div>
+    </div>
+
+    <!-- History of Science Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">History of Science Museum</h2>
+        <p class="museum-card__location">Oxford, United Kingdom</p>
+        <p class="museum-card__desc">This is a very Oxford museum, with its collection including Einstein's blackboard from a 1931 lecture and a huge set of astrolabes.</p>
+      </div>
+    </div>
+
+    <!-- Historic New Orleans Collection -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">The Historic New Orleans Collection</h2>
+        <p class="museum-card__location">New Orleans, United States</p>
+        <p class="museum-card__desc">I went to this the same day as Emmanuel Macron during his visit to New Orleans in 2022! The 3 floors of artifacts are truly amazing, including information about the Louisiana Purchase and the history of the French Quarter.</p>
+      </div>
+    </div>
+
+    <!-- Louisiana Museum of Modern Art -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Louisiana Museum of Modern Art</h2>
+        <p class="museum-card__location">Humlebæk, Denmark</p>
+        <p class="museum-card__desc">I hesitated including this museum because it can hardly be described as small. The Louisiana is internationally renowned, with exhibits featuring Yayoi Kusama and Pussy Riot (as well as the Alicja Kwade spheres we have at Stanford!). However, the way the museum integrates art with the scenery makes it feel small, and the glassy building is completely dwarfed by the sea. In many ways, it felt like a charming, local museum, and the gift store has an incredible selection of Danish design products. Visit during the blue hour!</p>
+      </div>
+    </div>
+
+    <!-- Emily Dickinson Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Emily Dickinson Museum</h2>
+        <p class="museum-card__location">Amherst, United States</p>
+        <p class="museum-card__desc">This is the actual house Emily Dickinson wrote her incredible poems, and includes her beloved garden.</p>
+      </div>
+    </div>
+
+    <!-- National Coach Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">National Coach Museum</h2>
+        <p class="museum-card__location">Lisbon, Portugal</p>
+        <p class="museum-card__desc">While I thought a museum devoted to coaches and carriages would be boring, the sheer extravagance of each of them was incredible, and I felt as if I was walking through a Disney set.</p>
+      </div>
+    </div>
+
+    <!-- Musée de l'Orangerie -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/orangerie-water-lilies.jpg" alt="Monet's Water Lilies at Musée de l'Orangerie" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Musée de l'Orangerie</h2>
+        <p class="museum-card__location">Paris, France</p>
+        <p class="museum-card__desc">Also not really "small", but I'm always surprised how many people I know who visit Paris and didn't visit this museum. This is the place to see Water Lilies the way Monet intended — curved on the walls of a large oval room.</p>
+      </div>
+    </div>
+
+    <!-- Trotsky House Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Trotsky House Museum</h2>
+        <p class="museum-card__location">Mexico City, Mexico</p>
+        <p class="museum-card__desc">The place to visit when you can't get tickets to Frida Kahlo's house :) Jokes aside, this museum is in the same neighborhood and is less crowded with tourists — there's a peaceful courtyard, but you can also still see bullet holes from a prior assassination attempt of Trotsky.</p>
+      </div>
+    </div>
+
+    <!-- Pitt Rivers Museum -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/pitt-rivers.jpg" alt="The Pitt Rivers Museum in Oxford" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Pitt Rivers Museum</h2>
+        <p class="museum-card__location">Oxford, United Kingdom</p>
+        <p class="museum-card__desc">A bizarre and chaotic "Oxford-esque" museum that groups together objects by type rather than culture, including weapons, masks, and "shrunken heads"(?). At the time, I was taking a course on British colonization in the Sudan, and visiting this museum sparked fascinated discussions on the choices behind how we categorize a collection.</p>
+      </div>
+    </div>
+
+    <!-- The Frick Collection -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">The Frick Collection</h2>
+        <p class="museum-card__location">New York City, United States</p>
+        <p class="museum-card__desc">Visiting the Frick feels like being invited to a dinner party at an eccentric millionaire's elegant home, filled with Vermeer and Turner.</p>
+      </div>
+    </div>
+
+    <!-- Sigmund Freud Museum -->
+    <div class="museum-card compact">
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Sigmund Freud Museum</h2>
+        <p class="museum-card__location">Vienna, Austria</p>
+        <p class="museum-card__desc">This museum was kind of unsettling, as you see Freud's apartment, office, and waiting room for patients awaiting psychoanalysis.</p>
+      </div>
+    </div>
+
+    <!-- Akrotiri -->
+    <div class="museum-card has-image">
+      <div class="museum-card__image">
+        <img src="images/akrotiri-ruins.jpg" alt="Ruins of Akrotiri in Thera, Greece" loading="lazy">
+      </div>
+      <div class="museum-card__body">
+        <h2 class="museum-card__name">Akrotiri Museum</h2>
+        <p class="museum-card__location">Thera, Greece</p>
+        <p class="museum-card__desc">The museum is designed so that you walk through well-preserved ruins of a Bronze Age city buried by a volcano, including Minoan frescoes! The museum is kind of at one end of Santorini, so the views are incredible.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="site-footer">
+    <p>Written by <a href="/">Megha Srivastava</a> · megha at cs dot stanford dot edu</p>
+  </footer>
+
+</body>
+</html>

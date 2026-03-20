@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes from an AI-Led Research Project on Pharmacovigilance — meghabytes</title>
+  <meta name="description" content="Reflections on my spotlight submission to the 1st Agents4Science conference, where AI both led and reviewed research papers.">
+  <meta name="author" content="Megha Srivastava">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAF7F2;
+      --color-text: #2C2825;
+      --color-text-secondary: #6B6560;
+      --color-accent: #B85C3A;
+      --color-accent-soft: #D4896E;
+      --color-border: #E5DDD4;
+      --color-card-bg: #FFFFFF;
+      --color-code-bg: #F0EBE4;
+      --color-rating-fill: #B85C3A;
+      --color-rating-empty: #E5DDD4;
+      --color-bg: #FAF7F2;
+      --color-text: #2C2825;
+      --color-text-secondary: #6B6560;
+      --color-accent: #808A3B;
+      --color-accent-hover: #6B7432;
+      --color-border: #E5DDD4;
+      --color-someday: #C4BAB0;
+      --font-display: 'Lora', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.75;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      padding: 2rem 2rem 0;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .site-header nav {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .site-header nav a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 2.8rem);
+      line-height: 1.18;
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: 0.8rem;
+    }
+    .hero .subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.2rem;
+    }
+    .hero .paper-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .hero .paper-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border: 1.5px solid var(--color-accent);
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero .paper-links a:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    .hero .meta {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.02em;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ── Article ── */
+    article {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    article p {
+      margin-bottom: 1.4rem;
+    }
+
+    article a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    article strong {
+      font-weight: 600;
+    }
+
+    /* ── Headings ── */
+    article h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin: 3rem 0 1.2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    article h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2.5rem 0 0.8rem;
+      color: var(--color-text);
+    }
+
+    /* ── Blockquote ── */
+    article blockquote {
+      border-left: 3px solid var(--color-accent-soft);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+      color: var(--color-text-secondary);
+      font-style: italic;
+    }
+
+    /* ── Inline code ── */
+    article code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: var(--color-code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+
+    /* ── Math (simple inline) ── */
+    .math {
+      font-family: var(--font-mono);
+      font-size: 0.92em;
+      background: var(--color-code-bg);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+
+    /* ── Figures ── */
+    figure {
+      margin: 2rem 0;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      display: block;
+    }
+    figure figcaption {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── Wide figures (screenshots, diagrams) ── */
+    figure.wide {
+      max-width: 900px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      padding: 0 1rem;
+    }
+    figure.wide img {
+      width: 100%;
+    }
+
+    /* ── AI Helpfulness Rating ── */
+    .ai-rating {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .ai-rating .label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+    }
+    .ai-rating .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .ai-rating .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-rating-empty);
+    }
+    .ai-rating .dot.filled {
+      background: var(--color-rating-fill);
+    }
+    .ai-rating .summary {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    /* ── Lists ── */
+    article ul, article ol {
+      margin: 1rem 0 1.4rem 1.5rem;
+    }
+    article li {
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── Horizontal rule ── */
+    article hr {
+      border: none;
+      height: 1px;
+      background: var(--color-border);
+      margin: 3rem auto;
+      max-width: 120px;
+    }
+
+    /* ── Highlight box (for key insight) ── */
+    .highlight-box {
+      background: var(--color-card-bg);
+      border-left: 4px solid var(--color-accent);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+    }
+
+    /* ── Footnotes ── */
+    .footnotes {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+    .footnotes ol {
+      margin-left: 1.2rem;
+    }
+    .footnotes li {
+      margin-bottom: 0.8rem;
+    }
+    .footnotes a {
+      color: var(--color-accent);
+    }
+    sup a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-size: 0.8em;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      border-top: 1px solid var(--color-border);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .site-footer a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 639px) {
+      .hero { padding: 3rem 1.5rem 1rem; }
+      article { padding: 0 1.5rem 3rem; }
+      figure.wide {
+        max-width: 100%;
+        margin-left: 0;
+        transform: none;
+        padding: 0;
+      }
+      .ai-rating { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav><a href="/">meghabytes</a> · research</nav>
+  </header>
+
+  <section class="hero">
+    <h1>Notes from an AI-Led Research Project on Pharmacovigilance</h1>
+    <p class="subtitle">Reflections on my spotlight submission to the 1st Agents4Science conference.</p>
+    <div class="paper-links">
+      <a href="https://openreview.net/forum?id=4nrWtE6oZ9">&#128196; Paper</a>
+      <a href="https://github.com/meghabyte/echo">&#128187; Code</a>
+    </div>
+    <p class="meta">Megha Srivastava · November 2025</p>
+  </section>
+
+  <article>
+
+    <p>"Reviewer #2" — the picky, ever unreasonable reviewer — is a famous inside joke in academic publishing. But lately, the review process for every machine learning conference (e.g. ICML, NeurIPS) arrives with a new target of grumbling: the dreaded review generated by a large language model (LLM).</p>
+
+    <figure>
+      <img src="images/01-icml-linkedin.jpg" alt="ICML program chairs speculating about LLM-generated reviews on LinkedIn">
+      <figcaption>Program chairs of this year's ICML conference speculate whether an author has been generating reviews with LLMs. Source: LinkedIn</figcaption>
+    </figure>
+
+    <p>Despite the outcry every single review cycle, authors are also increasingly relying on AI tools themselves for their research. My PhD peers use <a href="https://cursor.com/">Cursor</a> to write entire code bases, <a href="https://www.overleaf.com/learn/how-to/AI_features">Overleaf</a> provides a wide set of re-write and summarization tools, and in one Slack channel I'm part of, a student even suggested starting a project by first asking ChatGPT: <em>"Is this idea novel?"</em>.</p>
+
+    <figure>
+      <img src="images/02-overleaf-writefull.png" alt="Overleaf's AI writing suggestions feature">
+      <figcaption>Overleaf's feature for academic writing suggestions. Source: <a href="https://www.writefull.com/">Writefull</a>.</figcaption>
+    </figure>
+
+    <p>While the research community has largely focused on how to <em>regulate</em> the use of AI tools, the recent <a href="https://agents4science.stanford.edu/">Agents4Science</a> conference took a completely different approach and asked: <em>what happens in the extreme</em>? If AI systems both <strong>lead</strong> and <strong>review</strong> research papers, can interesting research results emerge? To answer this, the conference <strong>required authors to use AI throughout their research project</strong>. Each paper was then reviewed by a set of AI reviewers.</p>
+
+    <figure class="wide">
+      <img src="images/03-agents4science-viz.png" alt="Visualization of all Agents4Science submissions">
+      <figcaption><a href="https://agents4science.stanford.edu/submissions.html">A visualization tool</a> for all submissions to Agents4Science, including Echo.</figcaption>
+    </figure>
+
+    <p>My submission, <a href="https://openreview.net/forum?id=4nrWtE6oZ9"><em>Echo: A multi-agent AI system for patient-centered pharmacovigilance</em></a>, was selected as a spotlight. The overall acceptance rate was <strong>18.9%</strong>, which is quite competitive.<sup><a href="#fn1" id="fnref1">1</a></sup> And despite not feeling too attached to the project itself (I only set aside 6 hours to work on it, and heavily relied on Claude Sonnet 3.5), I still felt excitement upon receiving the acceptance notification. <strong>Why did I feel ownership over something that an AI system largely created?</strong></p>
+
+    <p>The answer, I think, is that I had still invested energy into creative work — not writing or coding, but in <em>steering</em>. Throughout the project, I found myself playing a strange kind of role: part PI, part prompt engineer. I had to revise, re-try, and re-write entire paragraphs, experiencing the same waves of satisfaction and frustration that accompany "normal" research projects.</p>
+
+    <p>In this post, I share what it actually felt like to have an AI lead each step of a research project, including:</p>
+
+    <ol>
+      <li><strong>The Process</strong> — When I chose to "give Claude the wheel", when I had to take it back, and the eventual division-of-labor that emerged.</li>
+      <li><strong>The Submission</strong> — The eventual result and feedback, and why the conference's "AI involvement checklist" is limited.</li>
+      <li><strong>The Takeaways</strong> — How I now wish to use AI in my research projects in the future, and why I believe that research will remain a very human endeavor, even if our tools keep improving.</li>
+    </ol>
+
+    <hr>
+
+    <h2>The Process</h2>
+
+    <p>My project for Agents4Science was <strong>Echo</strong>, a multi-agent tool for identifying novel adverse drug reactions (ADRs) from social media forums. This can be useful for pharmacovigilance, as drug safety warnings typically rely on clinical trials or electronic health records, which may not be timely or robust.</p>
+
+    <p>I created a time-box of 6 hours for this project. I also didn't spend much time exploring different language models. For no real reason,<sup><a href="#fn2" id="fnref2">2</a></sup> I typically use ChatGPT for quick questions and Claude Sonnet 3.5 for more complex writing and coding tasks, and stuck with the latter here.</p>
+
+    <figure class="wide">
+      <img src="images/04-echo-overview.png" alt="Overview diagram of Echo's multi-agent system">
+      <figcaption>Overview of Echo, a multi-agent AI system for patient-centered pharmacovigilance I built in collaboration with Claude Sonnet 3.5.</figcaption>
+    </figure>
+
+    <h3>Step 1: Brainstorming the Research Idea</h3>
+
+    <p>The idea behind Echo was 100% human, driven from my personal experiences. Oncology patients often have to take many drugs concurrently, and often turn to online support groups for answers to every-day questions about side effects (<em>how long after a chemo infusion does the metallic taste last? did you ever have arms tingling after radiation? why is my hair now curly?</em>). These support groups are wonderful spaces, and contain rich information I believe go beyond what doctors might be able to keep track of. One public example is the <a href="https://www.reddit.com/r/cancer/">r/cancer</a> subreddit.</p>
+
+    <p>Therefore, I was personally passionate about my original idea: can we identify drug safety signals from social media before official reporting? While I didn't love the idea of using Reddit data<sup><a href="#fn3" id="fnref3">3</a></sup>, that seemed easiest to start with as a proof-of-concept. At this stage, I simply prompted Claude just for some validation and "spark":</p>
+
+    <figure>
+      <img src="images/05-brainstorm-claude.png" alt="Initial brainstorming conversation with Claude about Echo">
+      <figcaption>Initial brainstorming with Claude Sonnet 3.5 on the idea behind Echo.</figcaption>
+    </figure>
+
+    <div class="ai-rating">
+      <span class="label">AI Helpfulness</span>
+      <div class="dots">
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot"></span>
+      </div>
+      <span class="summary">Claude's response motivated me to continue. The proposed building blocks seemed reasonable, and after back-and-forth I decided on the 4 agents: Explorer, Analyzer, Verifier, and Proposer.</span>
+    </div>
+
+    <h3>Step 2: Building the Explorer Agent</h3>
+
+    <p>The purpose of the Explorer agent is to identify (drug, side-effect) pairs across Reddit posts, while handling patient's informal language. Simply asking Claude Sonnet 3.5 to generate code for this agent resulted in a pretty good baseline:</p>
+
+    <figure class="wide">
+      <img src="images/06-explorer-code.png" alt="Initial code for the Explorer agent">
+      <figcaption>Initial code for the Explorer agent to crawl Reddit posts in order to identify novel adverse drug reactions (left) using a language model-based extraction method (right).</figcaption>
+    </figure>
+
+    <p>Given my 6-hour limit, I appreciated not having to put in cognitive effort to think about the code's skeleton. However, after going through the effort of setting up Reddit credentials, I realized a big flaw in Claude's choice to use PRAW: it can only access the most recent 1000 posts on a subreddit! Part of my goal was to show that Echo can discover ADRs <em>not</em> reported in the literature, and I knew I'd need to prove this using older posts (e.g. from 2017). Sadly, Claude couldn't find a solution to this.</p>
+
+    <div class="ai-rating">
+      <span class="label">AI Helpfulness</span>
+      <div class="dots">
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <span class="summary">Frustrated by a dead-end from Claude's suggestion, I completed the Explorer agent myself — finding a hacky SerpAPI workaround and editing the extraction prompt to include temporal proximity and community support signals.</span>
+    </div>
+
+    <figure>
+      <img src="images/07-explorer-extraction.png" alt="Example of Explorer agent extracting a patient's dental sensitivity">
+      <figcaption>An example of Echo's Explorer agent extracting a patient's dental sensitivity while taking the chemotherapy drug oxaliplatin.</figcaption>
+    </figure>
+
+    <h3>Step 3: Finding Confounding Variables with the Analyzer Agent</h3>
+
+    <p>The next step was to build the Analyzer agent, which combines all (drug, side effect) pairs discovered by the Explorer agent, and creates summary statistics of 3 metrics: temporal proximity, patient confidence, and community engagement. These metrics were output from the Explorer agent, but if I had more time I'd have liked to do something more rigorous (e.g. use Reddit post upvotes for engagement).</p>
+
+    <figure>
+      <img src="images/08-analyzer-confounders.png" alt="Example confounding variables identified by the Analyzer agent">
+      <figcaption>Example confounding variables identified by the Analyzer agent for adverse drug reactions discovered from Reddit data. Source: <a href="https://openreview.net/pdf?id=4nrWtE6oZ9">Paper</a></figcaption>
+    </figure>
+
+    <div class="ai-rating">
+      <span class="label">AI Helpfulness</span>
+      <div class="dots">
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot"></span>
+      </div>
+      <span class="summary">Claude easily generated the Analyzer script, and it was easy to add a confounders feature. But I really wish I could have done something more rigorous, such as creating an underlying causal graph from unstructured text.<sup><a href="#fn5" id="fnref5">5</a></sup></span>
+    </div>
+
+    <h3>Step 4: Evaluations with the Verifier Agent</h3>
+
+    <p>By 3 hours, it was time to work on evaluating Echo. From Claude, I learned about the <a href="https://www.fda.gov/drugs/fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard">FDA's Adverse Event Reporting System (FAERS)</a>, which seemed like a reasonable ground truth database. I then asked Claude to write a Python function that takes in a (drug, side-effect) pair and year as inputs, and returns the number of corresponding instances up until the target year.</p>
+
+    <p>At this point, I realized it was pretty useful that Claude had included a <code>drug_canonical</code> field in the Explorer agent's code all on its own: it's hard to automatically match canonical drug names without leaving it to LLM magic. We were now able to label all (drug, side-effect) pairs with FAERS counts, and then calculate a Verifier score:</p>
+
+    <p><span class="math">score = ln(FAERS_count + 1)</span></p>
+
+    <p>Adverse drug reactions with a score of 0 were considered novel, but the work now fell on me to sanity check if these findings made sense! Some ADRs discovered by Echo with a score of 0, along with patient quotes, were:</p>
+
+    <ul>
+      <li><code>therapeutic effect on multiple sclerosis, chemotherapy</code> (<em>"my neurologist just keeps saying, well chemo will treat your MS too"</em>)</li>
+      <li><code>deep vein thrombosis, abraxane</code> (<em>"she had folfirinox and then abraxane…a week later she had a stroke/DVTs"</em>)</li>
+      <li><code>hepatotoxicity, ivermectin</code> (<em>"My uncle tried it and badly damaged his liver. It almost killed him."</em>)</li>
+    </ul>
+
+    <p>Unfortunately, a quick Google search showed that many of the associations given a score of 0 are known by the medical community. <strong>Claude was no longer helpful in automating this part of the evaluation.</strong> For the paper, I reported 5 ADRs that appeared novel after I spent a lot of time manually digging. With time, I'd have spoken to a researcher in the medical community.</p>
+
+    <figure>
+      <img src="images/09-novel-adrs-table.png" alt="5 potentially novel drug-side effect associations discovered by Echo">
+      <figcaption>5 potentially novel (drug, side-effect) associations discovered by Echo from Reddit data. Source: <a href="https://openreview.net/pdf?id=4nrWtE6oZ9">Paper</a></figcaption>
+    </figure>
+
+    <div class="ai-rating">
+      <span class="label">AI Helpfulness</span>
+      <div class="dots">
+        <span class="dot filled"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <span class="summary">The only useful thing Claude provided was a pointer to the FAERS database. The actual hard research questions — what evaluation makes sense, quantifying statistical signals — required deeper thinking. And <em>I wanted to do that thinking</em>. That's the joy of research!</span>
+    </div>
+
+    <h3>Step 5: Case Studies and Literature Search</h3>
+
+    <p>The final set of results I wanted to include were case studies showing that if we restricted Echo to only look at Reddit posts before a certain year (e.g. 2017), it could identify ADRs not reported in the literature. I first used Claude to brainstorm suggestions:</p>
+
+    <figure>
+      <img src="images/10-case-studies-claude.png" alt="Claude suggesting case studies for ADRs discovered by Echo">
+      <figcaption>Suggested case studies from Claude of ADRs discovered by Echo that might have preceded any FDA warnings.</figcaption>
+    </figure>
+
+    <p>While the gold-stars in Claude's response created a sense of excitement, I quickly realized many of these were not suitable case studies. For example, physicians were aware of CAR-T CRS since the start of clinical trials in 2017. I also spent a lot of time trying to verify when a side-effect was truly first documented for a drug. I eventually reported the following case studies:</p>
+
+    <ul>
+      <li><strong>Pneumonitis:</strong> (nivolumab, pneumonitis) and (pembrolizumab, pneumonitis)</li>
+      <li><strong>Neuromuscular complications:</strong> (nivolumab, myasthenia gravis-like autoimmune neuropathy)</li>
+      <li><strong>Hepatotoxicity:</strong> (regorafenib, hepatotoxicity)</li>
+    </ul>
+
+    <div class="ai-rating">
+      <span class="label">AI Helpfulness</span>
+      <div class="dots">
+        <span class="dot filled"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <span class="summary">Claude was helpful for brainstorming but didn't have the long-context sensitivity to accurately identify if an ADR in our data was reported before its appearance in the literature.</span>
+    </div>
+
+    <h3>Step 6: Designing a User Interface</h3>
+
+    <p>My original vision was that Echo might eventually be a web interface that lets a drug safety expert quickly discover potential side-effects of a drug on an interactive interface. I asked Claude to create a clean interface that takes the aggregated data from Echo as a JSON file:</p>
+
+    <figure class="wide">
+      <img src="images/11-echo-ui.png" alt="The interactive interface created by Claude for Echo">
+      <figcaption>The interface created by Claude, run as a Python script on the command line, for visualizing and interacting with data from Echo.</figcaption>
+    </figure>
+
+    <div class="ai-rating">
+      <span class="label">AI Helpfulness</span>
+      <div class="dots">
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+        <span class="dot filled"></span>
+      </div>
+      <span class="summary">I was blown away by the interface Claude created. Designing clean interfaces has always been frustrating, but with a bit of "thinking time" Claude produced something really great. My faith in AI as a research companion was somewhat rejuvenated.</span>
+    </div>
+
+    <hr>
+
+    <h2>The Submission</h2>
+
+    <p>At the end of the 6 hours, I was pretty exhausted and dissatisfied with the final submission. Prompting Claude repeatedly just isn't <em>fun</em>.</p>
+
+    <h3>The Writing</h3>
+
+    <p>I used Claude to write most sections of the paper given our results. During this last stage, <a href="https://jamanetwork.com/journals/jamaoncology/fullarticle/2673831">I discovered a highly-relevant paper that Claude never suggested even when prompted for related works!</a> Ransohoff et al. had shown in 2018 that a deep-learning system could identify skin adverse reactions from chemotherapy drugs before reported in the literature. The primary difference was our ability to consider a larger scope and diverse kinds of patient language. If I had done my due diligence, this paper surely would have come up: it is published, well-cited, extremely relevant, and even by Stanford-affiliates I know. <strong>How did Claude miss this? Was it my prompt?</strong></p>
+
+    <h3>The Checklist</h3>
+
+    <p>Agents4Science asked all authors to report how they used AI in a checklist at the end of the paper, which they then used to assign "autonomy scores" to each submission (mine was 7, two outstanding papers were 9!).</p>
+
+    <p>But I don't think the checklist captures the full extent of how I used AI. For example, I often brainstormed by pressing the "retry" button on the Claude UI several times to explore different answers to the same question. For writing, I didn't just ask Claude to write the full paper, but provided guidance (e.g. "make this sound more academic") via back-and-forth dialogue.</p>
+
+    <h3>The AI Reviews</h3>
+
+    <p>Surprisingly, I found the AI-generated reviews helpful and encouraging. Negative feedback included:</p>
+
+    <ul>
+      <li><em>Subjective, unspecified scoring for temporal, confidence, and community metrics</em> — I agree with this feedback, and I think it is an interesting trade-off between using an LLM vs. a potentially underspecified formula.</li>
+      <li><em>The possibility that some "novel" associations are known but not well-documented</em> — I agree with this feedback, and really want to now reach out to medical experts.</li>
+      <li><em>The dataset is extremely small (187 posts)</em> — While our eventual Reddit dataset was small due to budget constraints with SerpAPI, I realized I viewed this positively: from only 187 posts, Echo identified 640 ADRs! This feedback pushed me to clarify the framing of our initial dataset.</li>
+    </ul>
+
+    <p>There was one AI reviewer (Gemini?) that gave strong scores to every submission, but even knowing this interestingly didn't prevent me from feeling a bit of an ego-boost upon reading <em>"The paper is of exceptionally high quality."</em> :)</p>
+
+    <hr>
+
+    <h2>The Takeaways</h2>
+
+    <p>Despite AI handling much of my submission, the most valuable parts of research for me (creative direction, evaluation, and thinking) remained fundamentally human tasks. I realized:</p>
+
+    <ol>
+      <li><strong>AI is best for acceleration, not direction</strong> — Claude excelled at generating code skeletons, creating interfaces, and drafting text. It struggled with decisions like designing appropriate evaluation metrics or identifying truly novel findings, which all take a significant amount of time.</li>
+      <li><strong>AI tools miss critical context</strong> — I'm still annoyed that Claude didn't suggest an important related work (Ransohoff et al., 2018), despite creating a whole literature review section. I now value doing a proper literature search myself, using AI to only partially help with discovery.</li>
+      <li><strong>Effective human-AI collaboration requires new skills</strong> — I ended up having to learn when to "give Claude the wheel" versus taking back control. Learning when to trust AI tools is starting to feel like its own skill, but it's hard to think about how to teach this when the models keep changing.</li>
+      <li><strong>The joy of research is in the thinking</strong> — Even with AI assistance, I realized how much I wanted to engage more deeply with the work. I wish I had given myself more time to read papers, analyze data, and consult experts.</li>
+      <li><strong>AI-generated reviews are helpful</strong> — We complain a lot about LLM-generated reviews, but I actually do think they serve as a strong first-pass feedback with actionable suggestions to improve the paper.</li>
+    </ol>
+
+    <h2>Conclusion</h2>
+
+    <p>One aspect that the "AI replacing researchers" hype misses: research is satisfying because we're curious and imagine questions we want to answer, not just because we want papers accepted. Collaborating with Claude felt like mentoring (via text) a very fast and smart student, but who lacked their own intrinsic motivation. As I start to think about whether or not I would enjoy staying in academia, I wonder if such situations would feel meaningful?</p>
+
+    <figure>
+      <img src="images/12-ai-comic.png" alt="Comic about AI replacing humans">
+      <figcaption>Source: <a href="https://www.instagram.com/p/DNjRjyATGNY/">Instagram</a></figcaption>
+    </figure>
+
+    <!-- Footnotes -->
+    <div class="footnotes">
+      <ol>
+        <li id="fn1">For reference, the acceptance rate for NeurIPS 2025, the biggest conference in the machine learning and AI community, was <a href="https://blog.neurips.cc/2025/09/30/reflections-on-the-2025-review-process-from-the-program-committee-chairs/">~25%</a>. <a href="#fnref1">&#8617;</a></li>
+        <li id="fn2">This is what many people in Silicon Valley refers to as "vibes". <a href="#fnref2">&#8617;</a></li>
+        <li id="fn3">Reddit <a href="https://techcrunch.com/2024/05/09/reddit-locks-down-its-public-data-in-new-content-policy-says-use-now-requires-a-contract/">has pretty stringent policies in place to protect user's privacy</a>, and I don't believe Echo could be deployed using Reddit data without some kind of permissions. <a href="#fnref3">&#8617;</a></li>
+        <li id="fn4"><a href="https://www.seangoedecke.com/ai-sycophancy/">https://www.seangoedecke.com/ai-sycophancy/</a> <a href="#fnref4">&#8617;</a></li>
+        <li id="fn5"><a href="https://arxiv.org/abs/2407.07018">https://arxiv.org/abs/2407.07018</a> <a href="#fnref5">&#8617;</a></li>
+      </ol>
+    </div>
+
+  </article>
+
+  <footer class="site-footer">
+    <p>Written by <a href="/">Megha Srivastava</a> · megha at cs dot stanford dot edu</p>
+  </footer>
+
+</body>
+</html>
