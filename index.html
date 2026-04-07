@@ -147,8 +147,116 @@ AI assistance for pharmacovigilance</a> as a spotlight at <a href="https://agent
     </div>
     
 </body>
+
+<script>
+(function(){
+  const cv=document.getElementById('gol');
+  cv.height=window.innerHeight;
+  const cx=cv.getContext('2d');
+  const W=360,H=cv.height,S=7;
+  const C=Math.floor(W/S),R=Math.floor(H/S),N=C*R;
+
+  function h(a,b){const x=Math.sin(a*127.1+b*311.7)*43758.5;return x-Math.floor(x);}
+
+  const cRx=new Float32Array(N),cRy=new Float32Array(N),cRot=new Float32Array(N),cPh=new Float32Array(N);
+  for(let c=0;c<C;c++)for(let r=0;r<R;r++){
+    const i=r*C+c,base=1.8+h(c,r)*0.65;
+    cRx[i]=base*(0.9+h(c+5,r)*0.2);
+    cRy[i]=base*(0.9+h(c,r+5)*0.2);
+    cRot[i]=h(c+3,r+7)*Math.PI;
+    cPh[i]=h(c+9,r+2)*Math.PI*2;
+  }
+
+  let grid=new Uint8Array(N),op=new Float32Array(N);
+  let lastTick=0,fading=false,tickCount=0,prevLive=0,stagnant=0,seedIndex=0;
+
+  const TICK=1350, MX=0.55, FD=0.011, LAV='163,155,178';
+  const cc=Math.floor(C/2), rc=Math.floor(R/2);
+
+  const SEEDS=[
+    [[0,1],[1,0],[1,1],[1,2],[2,1],[0,2],[2,0]],
+    [[0,1],[1,0],[2,1],[1,2],[0,0],[2,2],[1,3],[3,1]],
+    [[1,0],[0,1],[1,1],[2,1],[1,2],[0,2],[2,0],[2,2],[0,0]],
+    [[0,1],[1,2],[2,1],[1,0],[1,1],[2,2],[0,0],[3,1],[1,3]],
+  ];
+
+  function placeSym(dc,dr){
+    [[cc+dc,rc+dr],[cc-dc,rc+dr],[cc+dc,rc-dr],[cc-dc,rc-dr]].forEach(([c,r])=>{
+      if(c>=0&&c<C&&r>=0&&r<R)grid[r*C+c]=1;
+    });
+  }
+
+  function seed(){
+    grid.fill(0);op.fill(0);prevLive=0;stagnant=0;tickCount=0;
+    const s=SEEDS[seedIndex%SEEDS.length];seedIndex++;
+    s.forEach(([dc,dr])=>placeSym(dc,dr));
+    for(let dc=-1;dc<=1;dc++)for(let dr=-1;dr<=1;dr++)
+      if(Math.random()<0.18)placeSym(dc+4,dr);
+  }
+
+  function step(){
+    const nx=new Uint8Array(N);
+    for(let c=0;c<C;c++)for(let r=0;r<R;r++){
+      let n=0;
+      for(let dc=-1;dc<=1;dc++)for(let dr=-1;dr<=1;dr++){
+        if(!dc&&!dr)continue;
+        const nc=c+dc,nr=r+dr;
+        if(nc>=0&&nc<C&&nr>=0&&nr<R)n+=grid[nr*C+nc];
+      }
+      const a=grid[r*C+c];
+      nx[r*C+c]=a?(n===2||n===3?1:0):(n===3?1:0);
+    }
+    grid=nx;
+    const live=grid.reduce((s,v)=>s+v,0);
+    if(live===prevLive)stagnant++;else{stagnant=0;prevLive=live;}
+    tickCount++;
+  }
+
+  function leftmost(){
+    for(let c=0;c<C;c++)for(let r=0;r<R;r++)if(grid[r*C+c])return c;
+    return C;
+  }
+
+  function allGone(){
+    for(let i=0;i<N;i++)if(op[i]>0.014)return false;
+    return true;
+  }
+
+  function frame(ts){
+    for(let i=0;i<N;i++){
+      const pulse=MX+Math.sin(ts*0.00042+cPh[i])*0.06;
+      const tgt=(!fading&&grid[i])?pulse:0;
+      if(op[i]<tgt)op[i]=Math.min(tgt,op[i]+FD);
+      else if(op[i]>tgt)op[i]=Math.max(0,op[i]-FD);
+    }
+    cx.clearRect(0,0,W,H);
+    for(let c=0;c<C;c++)for(let r=0;r<R;r++){
+      const i=r*C+c,o=op[i];
+      if(o>0.01){
+        cx.beginPath();
+        cx.ellipse(c*S+S*.5,r*S+S*.5,cRx[i],cRy[i],cRot[i],0,Math.PI*2);
+        cx.fillStyle=`rgba(${LAV},${o.toFixed(3)})`;
+        cx.fill();
+      }
+    }
+    if(!fading){
+      if(ts-lastTick>TICK){
+        lastTick=ts;
+        const lm=leftmost();
+        if((tickCount>8&&lm<=1)||lm===C||stagnant>14)fading=true;
+        else step();
+      }
+    }else if(allGone()){
+      seed();fading=false;lastTick=ts+800;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  seed();requestAnimationFrame(frame);
+})();
+</script>
 <footer>
-    <div class="container" style="text-align: center; padding: 20px 0;">
+    <div class="container" style="text-align: center; padding: 1px 0;">
         <span style="color:mediumvioletred;">Please <a style="color:mediumvioletred;text-decoration:underline" href="https://www.bcrf.org/" target="_blank">support breast cancer research!</a>&#x2764; </span>
         <br><br>
     </div>
