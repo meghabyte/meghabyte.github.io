@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main pages -->
+  <url>
+    <loc>https://meghabyte.github.io/</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/random.html</loc>
+  </url>
+
+  <!-- Blog pages -->
+  <url>
+    <loc>https://meghabyte.github.io/blog/books.html</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/teas.html</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/classes.html</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/uluru.html</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/pere-lachaise-nov24.html</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/museums.html</loc>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/research/aiscience-claude-25.html</loc>
+  </url>
+
+  <!-- Visualization -->
+  <url>
+    <loc>https://meghabyte.github.io/visualizations-halie/visualizations/crossword/</loc>
+  </url>
+
+</urlset>
