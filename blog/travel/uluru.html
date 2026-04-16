@@ -3,484 +3,707 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uluru — meghabytes</title>
+  <title>Uluṟu-Kata Tjuṯa — meghabytes</title>
   <meta name="description" content="50 photographs from Uluru, Australia.">
   <meta name="author" content="Megha Srivastava">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- ET Book -->
   <style>
+    @font-face {
+      font-family: 'et-book';
+      src: url('https://edwardtufte.github.io/et-book/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'et-book';
+      src: url('https://edwardtufte.github.io/et-book/et-book/et-book-italic-old-style-figures/et-book-italic-old-style-figures.woff') format('woff');
+      font-weight: normal;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'et-book';
+      src: url('https://edwardtufte.github.io/et-book/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff') format('woff');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
-      --bg-deep: #1F1210;
-      --bg-warm: #2D1B16;
-      --color-title: #E8D5C4;
-      --color-subtitle: #A08878;
-      --color-nav: #A08878;
-      --color-nav-accent: #C4A882;
-      --shadow-photo: 0 8px 40px rgba(0,0,0,0.5);
-      --shadow-photo-hover: 0 16px 60px rgba(0,0,0,0.7);
+      --bg: #FFFFF8;
+      --text: #111;
+      --text-light: #6B6B6B;
+      --text-faint: #A0A0A0;
+      --accent: #8A6A3B;
+      --border: #E0DDD5;
+      --caption-bg: rgba(255, 255, 248, 0.92);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth;
-      scrollbar-color: #5A3A2A #1F1210;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     body {
-      background: var(--bg-deep);
-      color: var(--color-title);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      cursor: crosshair;
-    }
-
-    /* ── Grain overlay ── */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
+      font-family: 'et-book', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     /* ── Header ── */
-    .site-header {
-      position: fixed;
-      top: 0;
+    header {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+
+    header a.home {
+      font-size: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    h1 {
+      font-weight: normal;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-top: 2.5rem;
+      margin-bottom: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-top: 0.6rem;
+      line-height: 1.5;
+    }
+
+    .date {
+      font-size: 0.85rem;
+      color: var(--text-faint);
+      margin-top: 1.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Intro ── */
+    .intro {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 0;
+    }
+
+    .intro p {
+      max-width: 540px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .intro p + p {
+      margin-top: 1em;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Grid ── */
+    .grid-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .cell {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: default;
+    }
+
+    .cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      filter: saturate(0.85);
+    }
+
+    .cell:hover img {
+      transform: scale(1.06);
+      filter: saturate(1);
+    }
+
+    .cell .caption {
+      position: absolute;
+      bottom: 0;
       left: 0;
       right: 0;
-      padding: 1.5rem 2rem;
-      z-index: 100;
-      mix-blend-mode: difference;
-    }
-    .site-header nav {
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--color-nav);
-    }
-    .site-header nav a {
-      color: var(--color-nav-accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero h1 {
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(4rem, 12vw, 9rem);
-      letter-spacing: 0.08em;
-      color: var(--color-title);
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .hero .location {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-subtitle);
-      margin-top: 1rem;
-    }
-
-    .hero .scroll-hint {
-      position: absolute;
-      bottom: 3rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-subtitle);
-      opacity: 0.6;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; transform: translateY(0); }
-      50% { opacity: 0.7; transform: translateY(4px); }
-    }
-
-    /* ── Scatter Gallery ── */
-    .gallery {
-      position: relative;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem 1rem 6rem;
-    }
-
-    .scatter-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-wrap: nowrap;
-      margin-bottom: -2rem;
-      position: relative;
-    }
-
-    .photo-item {
-      position: relative;
-      flex-shrink: 0;
-      perspective: 800px;
+      padding: 0.7rem 0.8rem;
+      background: var(--caption-bg);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(4px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
     }
 
-    .photo-item.visible {
+    .cell:hover .caption {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .photo-item .frame {
-      position: relative;
-      overflow: hidden;
-      border-radius: 3px;
-      box-shadow: var(--shadow-photo);
-      transition: box-shadow 0.4s ease, transform 0.3s ease;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-
-    .photo-item:hover .frame {
-      box-shadow: var(--shadow-photo-hover);
-      z-index: 10;
-    }
-
-    .photo-item img {
+    .caption .common {
+      font-size: 0.78rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      line-height: 1.3;
     }
 
-    /* ── Size classes ── */
-    .photo-item.xl .frame  { width: 480px; height: 360px; }
-    .photo-item.lg .frame  { width: 380px; height: 285px; }
-    .photo-item.md .frame  { width: 300px; height: 225px; }
-    .photo-item.sm .frame  { width: 220px; height: 165px; }
-    .photo-item.tall .frame { width: 260px; height: 390px; }
-    .photo-item.wide .frame { width: 500px; height: 250px; }
+    .caption .latin {
+      font-style: italic;
+      font-size: 0.72rem;
+      color: var(--text-light);
+      display: block;
+      margin-top: 0.15rem;
+      line-height: 1.3;
+    }
 
-    /* ── Lightbox ── */
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 10, 8, 0.95);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    /* ── Span variations ── */
+    .cell.wide {
+      grid-column: span 2;
+      aspect-ratio: 2 / 1;
     }
-    .lightbox.active {
-      display: flex;
-      opacity: 1;
-    }
-    .lightbox img {
-      max-width: 92vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 2px;
-      box-shadow: 0 0 80px rgba(0,0,0,0.6);
+
+    .cell.tall {
+      grid-row: span 2;
+      aspect-ratio: auto;
     }
 
     /* ── Footer ── */
-    .site-footer {
-      text-align: center;
-      padding: 4rem 2rem;
-      font-size: 0.82rem;
-      color: var(--color-subtitle);
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
     }
-    .site-footer a {
-      color: var(--color-nav-accent);
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    footer a {
+      color: var(--accent);
       text-decoration: none;
     }
 
     /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .photo-item.xl .frame  { width: 320px; height: 240px; }
-      .photo-item.lg .frame  { width: 260px; height: 195px; }
-      .photo-item.md .frame  { width: 200px; height: 150px; }
-      .photo-item.sm .frame  { width: 160px; height: 120px; }
-      .photo-item.tall .frame { width: 180px; height: 270px; }
-      .photo-item.wide .frame { width: 340px; height: 170px; }
+    @media (max-width: 700px) {
+      html { font-size: 14px; }
+      header { padding: 3rem 1.5rem 1.5rem; }
+      h1 { font-size: 2rem; }
+      .intro { padding: 1rem 1.5rem 0; }
+      .divider { padding: 0 1.5rem; margin: 2rem auto; }
+      .grid-section { padding: 0 1.5rem 4rem; }
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+      .cell.wide { grid-column: span 2; }
+      .cell.tall { grid-row: span 1; aspect-ratio: 1; }
+      footer { padding: 0 1.5rem 3rem; }
     }
 
-    @media (max-width: 600px) {
-      .scatter-row { flex-wrap: wrap; justify-content: center; }
-      .photo-item.xl .frame  { width: 90vw; height: 67vw; }
-      .photo-item.lg .frame  { width: 75vw; height: 56vw; }
-      .photo-item.md .frame  { width: 60vw; height: 45vw; }
-      .photo-item.sm .frame  { width: 50vw; height: 37vw; }
-      .photo-item.tall .frame { width: 55vw; height: 82vw; }
-      .photo-item.wide .frame { width: 85vw; height: 42vw; }
+    @media (max-width: 440px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+      }
+      .cell.wide { grid-column: span 1; aspect-ratio: 1; }
     }
+
+    /* ── Fade-in on load ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header, .intro, .grid-section, footer {
+      animation: fadeUp 0.8s ease both;
+    }
+    .intro { animation-delay: 0.1s; }
+    .grid-section { animation-delay: 0.2s; }
+    footer { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <nav><a href="/">meghabytes</a> · travel</nav>
-  </header>
-
-  <section class="hero">
+  <header>
+    <a class="home" href="/">meghabytes</a>
     <h1>Uluṟu-Kata Tjuṯa</h1>
-    <p class="location">Northern Territory, Australia · March 2025</p>
-    <p class="scroll-hint">scroll ↓</p>
-  </section>
+    <p class="subtitle">From spinifex to sandstone.</p>
+    <p class="date">March 2025 &middot; Northern Territory, Australia</p>
+  </header>
+  <div class="divider"><hr></div>
 
-  <section class="gallery" id="gallery"></section>
+  <div class="grid-section">
+    <div class="grid">
 
-  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="Full size photo">
+      <!-- Row 1 -->
+      <div class="cell wide">
+        <img src="images/uluru/01.jpg" alt="Desert wattle with Uluru in background" loading="lazy">
+        <div class="caption">
+          <span class="common">spinifex with Uluṟu beyond</span>
+          <span class="latin">Triodia spp., sandstone outcrop</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/02.jpg" alt="Detail at Uluru" loading="lazy">
+        <div class="caption">
+          <span class="common">spinifex at the edge of the plain</span>
+          <span class="latin">Triodia spp., Uluṟu in soft focus</span>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="cell">
+        <img src="images/uluru/03.jpg" alt="Ghost gum against red rock face" loading="lazy">
+        <div class="caption">
+          <span class="common">ghost gum at the base of Uluṟu</span>
+          <span class="latin">Corymbia aparrerinja</span>
+        </div>
+      </div>
+
+      <div class="cell tall">
+        <img src="images/uluru/04.jpg" alt="Uluru detail" loading="lazy">
+        <div class="caption">
+          <span class="common">spinifex and red sand</span>
+          <span class="latin">Triodia spp.</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/05.jpg" alt="Spinifex grass" loading="lazy">
+        <div class="caption">
+          <span class="common">narrow cleft between rock walls</span>
+          <span class="latin">weathered sandstone</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/06.jpg" alt="Rock surface detail" loading="lazy">
+        <div class="caption">
+          <span class="common">darkling beetle on red sand</span>
+          <span class="latin">Tenebrionidae</span>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="cell wide">
+        <img src="images/uluru/07.jpg" alt="Uluru panorama" loading="lazy">
+        <div class="caption">
+          <span class="common">eucalypt canopy against Uluṟu</span>
+          <span class="latin">river red gum or ghost gum</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/08.jpg" alt="Desert flora" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu beyond the trees</span>
+          <span class="latin">desert woodland foreground</span>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="cell">
+        <img src="images/uluru/09.jpg" alt="Sunrise colors" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu above the grassland</span>
+          <span class="latin">sandstone face with weathering hollow</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/10.jpg" alt="Desert scrub" loading="lazy">
+        <div class="caption">
+          <span class="common">desert oak with Kata Tjuṯa in the distance</span>
+          <span class="latin">Allocasuarina decaisneana</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/11.jpg" alt="Cave or overhang" loading="lazy">
+        <div class="caption">
+          <span class="common">distant ranges under a pale sky</span>
+          <span class="latin">open desert horizon</span>
+        </div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="cell wide">
+        <img src="images/uluru/12.jpg" alt="Kata Tjuta domes" loading="lazy">
+        <div class="caption">
+          <span class="common">black streaks on the rock face</span>
+          <span class="latin">weathering seam and sandstone surface</span>
+        </div>
+      </div>
+
+      <div class="cell tall">
+        <img src="images/uluru/13.jpg" alt="Valley of the Winds" loading="lazy">
+        <div class="caption">
+          <span class="common">small shrub rooted in the rock face</span>
+          <span class="latin">sandstone wall detail</span>
+        </div>
+      </div>
+
+      <!-- Row 6 -->
+      <div class="cell">
+        <img src="images/uluru/14.jpg" alt="Uluru at dusk through trees" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu through trees, in motion</span>
+          <span class="latin">roadside blur</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/15.jpg" alt="Rock face with watermark and sand" loading="lazy">
+        <div class="caption">
+          <span class="common">water-worn basin in the rock</span>
+          <span class="latin">erosion hollow in sandstone</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/16.jpg" alt="Desert wildflowers" loading="lazy">
+        <div class="caption">
+          <span class="common">sunbeams through storm cloud</span>
+          <span class="latin">crepuscular rays over the plain</span>
+        </div>
+      </div>
+
+      <!-- Row 7 -->
+      <div class="cell">
+        <img src="images/uluru/17.jpg" alt="Desert oak framing Uluru" loading="lazy">
+        <div class="caption">
+          <span class="common">branch framing the flank of Uluṟu</span>
+          <span class="latin">close view of the rock</span>
+        </div>
+      </div>
+
+      <div class="cell wide">
+        <img src="images/uluru/18.jpg" alt="Wide desert plain" loading="lazy">
+        <div class="caption">
+          <span class="common">golden grassland with distant domes</span>
+          <span class="latin">spinifex and desert oaks</span>
+        </div>
+      </div>
+
+      <!-- Row 8 -->
+      <div class="cell">
+        <img src="images/uluru/19.jpg" alt="Rock texture closeup" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu beyond low scrub</span>
+          <span class="latin">storm light over the plain</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/20.jpg" alt="Desert plant detail" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu behind desert shrubland</span>
+          <span class="latin">mulga and scrub foreground</span>
+        </div>
+      </div>
+
+      <div class="cell tall">
+        <img src="images/uluru/21.jpg" alt="Kata Tjuta dome close" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu above spinifex</span>
+          <span class="latin">Triodia spp. in the foreground</span>
+        </div>
+      </div>
+
+      <!-- Row 9 -->
+      <div class="cell">
+        <img src="images/uluru/22.jpg" alt="Sunrise or sunset panorama" loading="lazy">
+        <div class="caption">
+          <span class="common">curving red slope with a dead branch</span>
+          <span class="latin">weathered sandstone</span>
+        </div>
+      </div>
+
+      <div class="cell wide">
+        <img src="images/uluru/23.jpg" alt="Uluru large view" loading="lazy">
+        <div class="caption">
+          <span class="common">spinifex in the foreground, Uluṟu beyond</span>
+          <span class="latin">Triodia spp.</span>
+        </div>
+      </div>
+
+      <!-- Row 10 -->
+      <div class="cell">
+        <img src="images/uluru/24.jpg" alt="Uluru base detail" loading="lazy">
+        <div class="caption">
+          <span class="common">cleft between towering walls</span>
+          <span class="latin">Walpa Gorge</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/25.jpg" alt="Desert vegetation" loading="lazy">
+        <div class="caption">
+          <span class="common">shrubs at the base of Uluṟu</span>
+          <span class="latin">desert woodland</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/26.jpg" alt="Lizard or fauna" loading="lazy">
+        <div class="caption">
+          <span class="common">spinifex tufts on red sand</span>
+          <span class="latin">Triodia spp.</span>
+        </div>
+      </div>
+
+      <!-- Row 11 -->
+      <div class="cell wide">
+        <img src="images/uluru/27.jpg" alt="Valley of the Winds wide" loading="lazy">
+        <div class="caption">
+          <span class="common">storm light breaking through cloud</span>
+          <span class="latin">rain over the plain</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/28.jpg" alt="Rock crevice with glimpse through" loading="lazy">
+        <div class="caption">
+          <span class="common">rounded red domes at Kata Tjuṯa</span>
+          <span class="latin">weathered conglomerate</span>
+        </div>
+      </div>
+
+      <!-- Row 12 -->
+      <div class="cell tall">
+        <img src="images/uluru/29.jpg" alt="Dead tree against storm clouds" loading="lazy">
+        <div class="caption">
+          <span class="common">dead tree beneath a storm sky</span>
+          <span class="latin">desert woodland in heavy weather</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/30.jpg" alt="Rock surface with lichens" loading="lazy">
+        <div class="caption">
+          <span class="common">Kata Tjuṯa across the plain</span>
+          <span class="latin">domes on the horizon</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/31.jpg" alt="Spinifex close" loading="lazy">
+        <div class="caption">
+          <span class="common">tall spinifex in close view</span>
+          <span class="latin">Triodia spp.</span>
+        </div>
+      </div>
+
+      <!-- Row 13 -->
+      <div class="cell">
+        <img src="images/uluru/32.jpg" alt="Kata Tjuta path" loading="lazy">
+        <div class="caption">
+          <span class="common">Kata Tjuṯa beyond green groundcover</span>
+          <span class="latin">domes under overcast light</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/33.jpg" alt="Desert oak grove" loading="lazy">
+        <div class="caption">
+          <span class="common">desert oak with Uluṟu behind</span>
+          <span class="latin">Allocasuarina decaisneana</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/34.jpg" alt="Rock cave painting site" loading="lazy">
+        <div class="caption">
+          <span class="common">pitted sandstone face</span>
+          <span class="latin">tafoni and weathering hollows</span>
+        </div>
+      </div>
+
+      <!-- Row 14 -->
+      <div class="cell wide">
+        <img src="images/uluru/35.jpg" alt="Uluru large panoramic" loading="lazy">
+        <div class="caption">
+          <span class="common">spinifex and red sand in the foreground</span>
+          <span class="latin">Triodia spp., desert floor</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/36.jpg" alt="Sunset colors on rock" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu beyond scrub</span>
+          <span class="latin">broad plain-side view</span>
+        </div>
+      </div>
+
+      <!-- Row 15 -->
+      <div class="cell">
+        <img src="images/uluru/37.jpg" alt="Tall rock formation" loading="lazy">
+        <div class="caption">
+          <span class="common">steep flank of Uluṟu</span>
+          <span class="latin">weathering hollows in sandstone</span>
+        </div>
+      </div>
+
+      <div class="cell tall">
+        <img src="images/uluru/38.jpg" alt="Desert oak silhouette" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu above desert shrubs</span>
+          <span class="latin">mulga plain</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/39.jpg" alt="Sandy desert floor" loading="lazy">
+        <div class="caption">
+          <span class="common">blue hour over distant ranges</span>
+          <span class="latin">evening horizon</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/40.jpg" alt="Desert grass in wind" loading="lazy">
+        <div class="caption">
+          <span class="common">boulder slope with pale grasses</span>
+          <span class="latin">sandstone and dry vegetation</span>
+        </div>
+      </div>
+
+      <!-- Row 16 -->
+      <div class="cell wide">
+        <img src="images/uluru/41.jpg" alt="Uluru reflection or dusk" loading="lazy">
+        <div class="caption">
+          <span class="common">stone path between high walls</span>
+          <span class="latin">Walpa Gorge floor</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/42.jpg" alt="Rock texture abstract" loading="lazy">
+        <div class="caption">
+          <span class="common">sunlight through cloud beside Uluṟu</span>
+          <span class="latin">storm light on the plain</span>
+        </div>
+      </div>
+
+      <!-- Row 17 -->
+      <div class="cell">
+        <img src="images/uluru/43.jpg" alt="Pebbles or sand texture" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu with visitors in the foreground</span>
+          <span class="latin">lookout across the plain</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/44.jpg" alt="Uluru morning" loading="lazy">
+        <div class="caption">
+          <span class="common">broad weathered rock surface</span>
+          <span class="latin">sandstone texture and runoff seam</span>
+        </div>
+      </div>
+
+      <div class="cell tall">
+        <img src="images/uluru/45.jpg" alt="Kata Tjuta vertical" loading="lazy">
+        <div class="caption">
+          <span class="common">overhang with pale lichen</span>
+          <span class="latin">rock shelter detail</span>
+        </div>
+      </div>
+
+      <!-- Row 18 -->
+      <div class="cell">
+        <img src="images/uluru/46.jpg" alt="Sky and clouds over desert" loading="lazy">
+        <div class="caption">
+          <span class="common">branches against the rock face</span>
+          <span class="latin">eucalypt at the base of Uluṟu</span>
+        </div>
+      </div>
+
+      <div class="cell wide">
+        <img src="images/uluru/47.jpg" alt="Uluru from distance" loading="lazy">
+        <div class="caption">
+          <span class="common">storm sky at sunset</span>
+          <span class="latin">silhouettes across the plain</span>
+        </div>
+      </div>
+
+      <!-- Row 19 — closing -->
+      <div class="cell">
+        <img src="images/uluru/48.jpg" alt="Uluru at dusk through desert oaks" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu through sparse woodland</span>
+          <span class="latin">burnt trunks and evening light</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/49.jpg" alt="Dead tree in golden spinifex plain" loading="lazy">
+        <div class="caption">
+          <span class="common">dead tree in pale grassland</span>
+          <span class="latin">open woodland on the plain</span>
+        </div>
+      </div>
+
+      <div class="cell">
+        <img src="images/uluru/50.jpg" alt="Final photograph" loading="lazy">
+        <div class="caption">
+          <span class="common">Uluṟu through blurred trees</span>
+          <span class="latin">final glimpse on the road out</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <footer class="site-footer">
-    <p><a href="/">meghabytes</a></p>
+  <footer>
+    <p>Photographs taken at Uluṟu-Kata Tjuṯa National Park, Northern Territory.</p>
+    <p style="margin-top: 0.6rem;"><a href="/">← meghabytes</a></p>
   </footer>
-
-  <script>
-    // ── Photo layout data ──
-    // Each row is an array of { img, size, rotate, offsetY, marginLeft }
-    // Sizes: xl, lg, md, sm, tall, wide
-    const rows = [
-      // Row 1 — opening spread
-      [
-        { img: 'images/uluru/01.jpg', size: 'wide', rotate: -1.5, offsetY: 0, marginLeft: 0 },
-        { img: 'images/uluru/02.jpg', size: 'md',   rotate: 2,    offsetY: 40, marginLeft: -30 },
-      ],
-      // Row 2
-      [
-        { img: 'images/uluru/03.jpg', size: 'sm',   rotate: -2,   offsetY: 20, marginLeft: 40 },
-        { img: 'images/uluru/04.jpg', size: 'xl',   rotate: 0.8,  offsetY: -10, marginLeft: -20 },
-        { img: 'images/uluru/05.jpg', size: 'sm',   rotate: 3,    offsetY: 60, marginLeft: -25 },
-      ],
-      // Row 3
-      [
-        { img: 'images/uluru/06.jpg', size: 'tall', rotate: -1,   offsetY: 0, marginLeft: 20 },
-        { img: 'images/uluru/07.jpg', size: 'lg',   rotate: 1.5,  offsetY: 30, marginLeft: -40 },
-        { img: 'images/uluru/08.jpg', size: 'md',   rotate: -2.5, offsetY: -20, marginLeft: -15 },
-      ],
-      // Row 4
-      [
-        { img: 'images/uluru/09.jpg', size: 'lg',   rotate: 2,    offsetY: 10, marginLeft: 0 },
-        { img: 'images/uluru/10.jpg', size: 'sm',   rotate: -3,   offsetY: 50, marginLeft: -35 },
-        { img: 'images/uluru/11.jpg', size: 'md',   rotate: 1,    offsetY: -15, marginLeft: -20 },
-      ],
-      // Row 5 — big moment
-      [
-        { img: 'images/uluru/12.jpg', size: 'xl',   rotate: -0.5, offsetY: 0, marginLeft: 0 },
-        { img: 'images/uluru/13.jpg', size: 'tall', rotate: 2,    offsetY: -30, marginLeft: -50 },
-      ],
-      // Row 6
-      [
-        { img: 'images/uluru/14.jpg', size: 'md',   rotate: 3,    offsetY: 25, marginLeft: 60 },
-        { img: 'images/uluru/15.jpg', size: 'lg',   rotate: -1.5, offsetY: -10, marginLeft: -20 },
-        { img: 'images/uluru/16.jpg', size: 'sm',   rotate: 2,    offsetY: 45, marginLeft: -30 },
-      ],
-      // Row 7
-      [
-        { img: 'images/uluru/17.jpg', size: 'sm',   rotate: -2,   offsetY: 30, marginLeft: 30 },
-        { img: 'images/uluru/18.jpg', size: 'wide', rotate: 0.5,  offsetY: 0, marginLeft: -25 },
-      ],
-      // Row 8
-      [
-        { img: 'images/uluru/19.jpg', size: 'lg',   rotate: 1.5,  offsetY: 15, marginLeft: 0 },
-        { img: 'images/uluru/20.jpg', size: 'md',   rotate: -2,   offsetY: -25, marginLeft: -40 },
-        { img: 'images/uluru/21.jpg', size: 'tall', rotate: 1,    offsetY: 10, marginLeft: -15 },
-      ],
-      // Row 9
-      [
-        { img: 'images/uluru/22.jpg', size: 'md',   rotate: -1.5, offsetY: 0, marginLeft: 40 },
-        { img: 'images/uluru/23.jpg', size: 'xl',   rotate: 1,    offsetY: 20, marginLeft: -30 },
-      ],
-      // Row 10
-      [
-        { img: 'images/uluru/24.jpg', size: 'sm',   rotate: 3,    offsetY: 40, marginLeft: 80 },
-        { img: 'images/uluru/25.jpg', size: 'lg',   rotate: -1,   offsetY: -10, marginLeft: -35 },
-        { img: 'images/uluru/26.jpg', size: 'md',   rotate: 2.5,  offsetY: 30, marginLeft: -20 },
-      ],
-      // Row 11
-      [
-        { img: 'images/uluru/27.jpg', size: 'wide', rotate: -0.8, offsetY: 0, marginLeft: 0 },
-        { img: 'images/uluru/28.jpg', size: 'sm',   rotate: 2,    offsetY: 50, marginLeft: -40 },
-      ],
-      // Row 12
-      [
-        { img: 'images/uluru/29.jpg', size: 'tall', rotate: -2,   offsetY: 10, marginLeft: 50 },
-        { img: 'images/uluru/30.jpg', size: 'md',   rotate: 1.5,  offsetY: -20, marginLeft: -30 },
-        { img: 'images/uluru/31.jpg', size: 'lg',   rotate: -1,   offsetY: 25, marginLeft: -25 },
-      ],
-      // Row 13
-      [
-        { img: 'images/uluru/32.jpg', size: 'lg',   rotate: 0.5,  offsetY: 0, marginLeft: 20 },
-        { img: 'images/uluru/33.jpg', size: 'sm',   rotate: -3,   offsetY: 60, marginLeft: -20 },
-        { img: 'images/uluru/34.jpg', size: 'md',   rotate: 2,    offsetY: -10, marginLeft: -35 },
-      ],
-      // Row 14 — another big moment
-      [
-        { img: 'images/uluru/35.jpg', size: 'xl',   rotate: 1,    offsetY: 0, marginLeft: 0 },
-      ],
-      // Row 15
-      [
-        { img: 'images/uluru/36.jpg', size: 'md',   rotate: -2,   offsetY: 20, marginLeft: 30 },
-        { img: 'images/uluru/37.jpg', size: 'tall', rotate: 1.5,  offsetY: -15, marginLeft: -25 },
-        { img: 'images/uluru/38.jpg', size: 'sm',   rotate: -1,   offsetY: 45, marginLeft: -30 },
-      ],
-      // Row 16
-      [
-        { img: 'images/uluru/39.jpg', size: 'lg',   rotate: 2,    offsetY: 10, marginLeft: 0 },
-        { img: 'images/uluru/40.jpg', size: 'md',   rotate: -1.5, offsetY: -20, marginLeft: -40 },
-      ],
-      // Row 17
-      [
-        { img: 'images/uluru/41.jpg', size: 'sm',   rotate: 3,    offsetY: 30, marginLeft: 60 },
-        { img: 'images/uluru/42.jpg', size: 'wide', rotate: -0.5, offsetY: 0, marginLeft: -30 },
-      ],
-      // Row 18
-      [
-        { img: 'images/uluru/43.jpg', size: 'md',   rotate: 1.5,  offsetY: 15, marginLeft: 40 },
-        { img: 'images/uluru/44.jpg', size: 'lg',   rotate: -2,   offsetY: -10, marginLeft: -20 },
-        { img: 'images/uluru/45.jpg', size: 'sm',   rotate: 2.5,  offsetY: 50, marginLeft: -25 },
-      ],
-      // Row 19
-      [
-        { img: 'images/uluru/46.jpg', size: 'tall', rotate: -1,   offsetY: 0, marginLeft: 0 },
-        { img: 'images/uluru/47.jpg', size: 'xl',   rotate: 0.8,  offsetY: 20, marginLeft: -50 },
-      ],
-      // Row 20 — closing
-      [
-        { img: 'images/uluru/48.jpg', size: 'sm',   rotate: 2,    offsetY: 30, marginLeft: 70 },
-        { img: 'images/uluru/49.jpg', size: 'md',   rotate: -1.5, offsetY: -10, marginLeft: -25 },
-        { img: 'images/uluru/50.jpg', size: 'lg',   rotate: 1,    offsetY: 15, marginLeft: -30 },
-      ],
-    ];
-
-    // ── Build the gallery ──
-    const gallery = document.getElementById('gallery');
-
-    rows.forEach((row, rowIdx) => {
-      const rowEl = document.createElement('div');
-      rowEl.className = 'scatter-row';
-      rowEl.style.marginBottom = '-1.5rem';
-
-      row.forEach((photo, i) => {
-        const item = document.createElement('div');
-        item.className = `photo-item ${photo.size}`;
-        item.style.transform = `translateY(${photo.offsetY}px) rotate(${photo.rotate}deg)`;
-        item.style.marginLeft = `${photo.marginLeft}px`;
-        item.style.zIndex = Math.floor(Math.random() * 5);
-        // Stagger animation
-        item.style.transitionDelay = `${rowIdx * 0.05 + i * 0.1}s`;
-
-        const frame = document.createElement('div');
-        frame.className = 'frame';
-
-        const img = document.createElement('img');
-        img.src = `${photo.img}`;
-        img.alt = `Uluru photograph ${photo.img.replace('.jpg','')}`;
-        img.loading = 'lazy';
-
-        frame.appendChild(img);
-        item.appendChild(frame);
-        rowEl.appendChild(item);
-
-        // Lightbox click
-        frame.addEventListener('click', () => {
-          const lb = document.getElementById('lightbox');
-          document.getElementById('lightbox-img').src = img.src;
-          lb.classList.add('active');
-        });
-      });
-
-      gallery.appendChild(rowEl);
-    });
-
-    // ── Lightbox close ──
-    document.getElementById('lightbox').addEventListener('click', function() {
-      this.classList.remove('active');
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
-    });
-
-    // ── Scroll reveal ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.photo-item').forEach(el => observer.observe(el));
-
-    // ── Cursor-reactive tilt ──
-    let mouseX = 0, mouseY = 0;
-    let ticking = false;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!ticking) {
-        requestAnimationFrame(applyTilt);
-        ticking = true;
-      }
-    });
-
-    function applyTilt() {
-      const frames = document.querySelectorAll('.photo-item .frame');
-      const scrollY = window.scrollY;
-
-      frames.forEach(frame => {
-        const rect = frame.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const dx = mouseX - centerX;
-        const dy = mouseY - centerY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        const maxDist = 400;
-        if (dist < maxDist) {
-          const intensity = 1 - (dist / maxDist);
-          const tiltX = (dy / maxDist) * 8 * intensity;  // rotate around X axis
-          const tiltY = -(dx / maxDist) * 8 * intensity; // rotate around Y axis
-          const lift = intensity * 6;
-
-          frame.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${lift}px)`;
-        } else {
-          frame.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-        }
-      });
-
-      ticking = false;
-    }
-
-    // Reset tilt when mouse leaves
-    document.addEventListener('mouseleave', () => {
-      document.querySelectorAll('.photo-item .frame').forEach(frame => {
-        frame.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-      });
-    });
-  </script>
 
 </body>
 </html>
