@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meghabyte.github.io/sitemap.xml

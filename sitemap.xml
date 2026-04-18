@@ -4,50 +4,71 @@
   <!-- Main pages -->
   <url>
     <loc>https://meghabyte.github.io/</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
   <url>
     <loc>https://meghabyte.github.io/random.html</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
-  <!-- Blog pages -->
+  <!-- Blog index pages -->
   <url>
     <loc>https://meghabyte.github.io/blog/books.html</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
   <url>
     <loc>https://meghabyte.github.io/blog/teas.html</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
   <url>
     <loc>https://meghabyte.github.io/blog/classes.html</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
+  <!-- Blog posts -->
   <url>
-    <loc>https://meghabyte.github.io/blog/travel/uluru.html</loc>
-  </url>
-
-  <url>
-    <loc>https://meghabyte.github.io/blog/travel/pere-lachaise-nov24.html</loc>
-  </url>
-
-  <url>
-    <loc>https://meghabyte.github.io/blog/travel/museums.html</loc>
+    <loc>https://meghabyte.github.io/blog/bansuri.html</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
   <url>
     <loc>https://meghabyte.github.io/blog/research/aiscience-claude-25.html</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
-  <!-- Visualization -->
+  <!-- Travel -->
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/uluru.html</loc>
+    <lastmod>2026-04-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/pere-lachaise-nov24.html</loc>
+    <lastmod>2026-04-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/museums.html</loc>
+    <lastmod>2026-04-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://meghabyte.github.io/blog/travel/maine.html</loc>
+    <lastmod>2026-04-18</lastmod>
+  </url>
+
+  <!-- Visualizations -->
   <url>
     <loc>https://meghabyte.github.io/visualizations-halie/visualizations/crossword/</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
 
   <url>
     <loc>https://meghabyte.github.io/visualizations-halie/visualizations/questions/</loc>
+    <lastmod>2026-04-18</lastmod>
   </url>
-
-  
 
 </urlset>

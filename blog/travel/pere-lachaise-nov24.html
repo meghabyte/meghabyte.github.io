@@ -4,115 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Le Cimetière du Père Lachaise — meghabytes</title>
-  <meta name="description" content="A November walk through Père Lachaise cemetery in Paris — Chopin, Oscar Wilde, autumn light, and the sounds of rain on stone.">
+  <meta name="description" content="A November walk through Père Lachaise cemetery in Paris.">
   <meta name="author" content="Megha Srivastava">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
+    /* ── ET Book ── */
+    @font-face {
+      font-family: 'et-book';
+      src: url('https://edwardtufte.github.io/et-book/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'et-book';
+      src: url('https://edwardtufte.github.io/et-book/et-book/et-book-italic-old-style-figures/et-book-italic-old-style-figures.woff') format('woff');
+      font-weight: normal;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'et-book';
+      src: url('https://edwardtufte.github.io/et-book/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff') format('woff');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
-      --color-bg: #F5F1EB;
-      --color-text: #2A2623;
-      --color-text-secondary: #706862;
-      --color-accent: #8B6B4A;
-      --color-border: #DDD5CB;
-      --color-caption: #918780;
-      --color-bg: #FAF7F2;
-      --color-text: #2C2825;
-      --color-text-secondary: #6B6560;
-      --color-accent: #808A3B;
-      --color-accent-hover: #6B7432;
-      --color-border: #E5DDD4;
-      --color-someday: #C4BAB0;
-      --font-display: 'Lora', Georgia, serif;
-      --font-body: 'DM Sans', system-ui, sans-serif;
+      --bg: #FFFFF8;
+      --text: #111;
+      --text-light: #6B6B6B;
+      --text-faint: #A0A0A0;
+      --accent: #808A3B;
+      --border: #E0DDD5;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.75;
-      font-size: 17px;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'et-book', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
     }
 
     /* ── Header ── */
-    .site-header {
-      padding: 2rem 2rem 0;
-      max-width: 900px;
+    header {
+      max-width: 960px;
       margin: 0 auto;
+      padding: 4rem 2rem 2rem;
     }
-    .site-header nav {
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--color-text-secondary);
-    }
-    .site-header nav a {
-      color: var(--color-accent);
+
+    header a.home {
+      font-size: 1rem;
+      color: var(--accent);
       text-decoration: none;
-      font-weight: 500;
+      letter-spacing: 0.01em;
     }
 
-    /* ── Hero ── */
-    .hero {
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 3rem 1rem 0;
-    }
-    .hero img {
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      display: block;
+    header a.home:hover {
+      text-decoration: underline;
     }
 
-    .hero-text {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 3rem 2rem 0;
+    h1 {
+      font-weight: normal;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-top: 2.5rem;
+      margin-bottom: 0;
+      letter-spacing: -0.01em;
     }
-    .hero-text h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.5vw, 2rem);
-      line-height: 1.12;
-      font-weight: 500;
-      color: var(--color-text);
-      margin-bottom: 0.4rem;
-    }
-    .hero-text .location {
-      font-family: var(--font-display);
+
+    .subtitle {
       font-style: italic;
-      font-size: 1.15rem;
-      color: var(--color-text-secondary);
-      margin-bottom: 1rem;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-top: 0.6rem;
+      line-height: 1.5;
     }
-    .hero-text .meta {
-      font-size: 0.82rem;
-      color: var(--color-caption);
-      letter-spacing: 0.02em;
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--color-border);
+
+    .date {
+      font-size: 0.85rem;
+      color: var(--text-faint);
+      margin-top: 1.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+    }
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
     }
 
     /* ── Prose ── */
     .prose {
-      max-width: 720px;
+      max-width: 540px;
       margin: 0 auto;
-      padding: 2.5rem 2rem;
+      padding: 2rem 2rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
     }
     .prose p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
     }
     .prose p:last-child {
       margin-bottom: 0;
     }
     .prose a {
-      color: var(--color-accent);
+      color: var(--accent);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -120,60 +131,57 @@
       font-style: italic;
     }
 
-    /* ── Opening paragraph (styled differently) ── */
-    .prose.opening {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      line-height: 1.85;
-      color: var(--color-text);
-    }
-
     /* ── Blockquote / epitaph ── */
     .prose blockquote {
-      font-family: var(--font-display);
       font-style: italic;
       font-size: 1.05rem;
       line-height: 1.9;
-      color: var(--color-text-secondary);
-      border-left: 3px solid var(--color-accent);
-      padding-left: 1.5rem;
+      color: var(--text-light);
+      border-left: 2px solid var(--accent);
+      padding-left: 1.4rem;
       margin: 1.5rem 0;
     }
 
-    /* ── Full-width images ── */
-    .photo {
+    /* ── Images — hover saturation effect ── */
+    .photo,
+    .photo-pair,
+    .photo-grid,
+    .grave-entry {
       max-width: 750px;
       margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .photo img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      display: block;
+      padding: 0 2rem;
     }
 
-    /* ── Narrower images (for portraits and single shots within prose) ── */
-    .photo.narrow {
-      max-width: 720px;
-      padding: 0 2rem;
+    .photo img,
+    .photo-pair img,
+    .photo-grid img,
+    .grave-entry img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 3px;
+      filter: saturate(0.85);
+      transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .photo img:hover,
+    .photo-pair img:hover,
+    .photo-grid img:hover,
+    .grave-entry img:hover {
+      filter: saturate(1);
     }
 
     /* ── Photo grid (2x3) ── */
     .photo-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1rem;
+      max-width: 960px;
+      padding: 0 2rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
     }
     .photo-grid img {
-      width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 4px;
-      display: block;
       aspect-ratio: 3/2;
     }
     .photo-grid img.portrait {
@@ -182,42 +190,21 @@
 
     /* ── Two-up images ── */
     .photo-pair {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1rem;
+      max-width: 960px;
+      padding: 0 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
     .photo-pair img {
-      width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 4px;
-      display: block;
     }
 
-    /* ── Grave entries (image + caption) ── */
+    /* ── Grave entries (image only, no caption) ── */
     .grave-entry {
-      max-width: 720px;
-      margin: 0 auto;
+      max-width: 750px;
       padding: 0 2rem;
-    }
-    .grave-entry img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      display: block;
-    }
-    .grave-entry .caption {
-      font-size: 0.92rem;
-      color: var(--color-text-secondary);
-      line-height: 1.65;
-      margin-top: 0.8rem;
-    }
-    .grave-entry .caption strong {
-      color: var(--color-text);
-      font-weight: 500;
     }
 
     /* ── Spacers ── */
@@ -225,24 +212,32 @@
     .spacer-lg { height: 4rem; }
 
     /* ── Footer ── */
-    .site-footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      font-size: 0.85rem;
-      color: var(--color-text-secondary);
-      border-top: 1px solid var(--color-border);
-      max-width: 900px;
-      margin: 2rem auto 0;
+    footer {
+      max-width: 960px;
+      margin: 4rem auto 0;
+      padding: 2rem 2rem 4rem;
+      border-top: 1px solid var(--border);
     }
-    .site-footer a {
-      color: var(--color-accent);
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-faint);
+      font-style: italic;
+    }
+    footer a {
+      color: var(--accent);
       text-decoration: none;
     }
 
-    /* ── Fade-in animation ── */
+    /* ── Fade-in on load ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    header { animation: fadeUp 0.8s ease both; }
+
     .fade-in {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(14px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .fade-in.visible {
@@ -251,31 +246,36 @@
     }
 
     /* ── Responsive ── */
-    @media (max-width: 639px) {
-      .hero-text { padding: 2rem 1.5rem 0; }
-      .prose { padding: 2rem 1.5rem; }
-      .grave-entry { padding: 0 1.5rem; }
-      .photo-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 700px) {
+      html { font-size: 14px; }
+      header { padding: 3rem 1.5rem 1.5rem; }
+      h1 { font-size: 2rem; }
+      .prose { padding: 1.5rem 1.5rem; }
+      .photo, .grave-entry { padding: 0 1.5rem; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem; }
+      .photo-pair { padding: 0 1.5rem; }
+      footer { padding: 2rem 1.5rem 3rem; }
+    }
+
+    @media (max-width: 440px) {
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-pair { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <nav><a href="/">meghabytes</a> · travel</nav>
+  <header>
+    <a class="home" href="/">meghabytes</a>
+    <h1>Le Cimetière du Père Lachaise</h1>
+    <p class="subtitle"> A November walk through the Père Lachaise cemetery in Paris<p>
+    <p class="date">November 2024 &middot; Paris, France</p>
   </header>
 
+  <div class="divider"><hr></div>
+
   <!-- Hero Image -->
-
-
-  <!-- Title Block -->
-  <div class="hero-text fade-in">
-    <h1>Le Cimetière du Père Lachaise</h1>
-    <p class="location">Paris, France</p>
-    <p class="meta">Megha Srivastava · November 2024</p>
-  </div>
-
-    <div class="hero fade-in">
+  <div class="photo fade-in">
     <img src="images/01-hero-cemetery.jpg" alt="Père Lachaise cemetery in autumn light" loading="eager">
   </div>
 
@@ -367,35 +367,45 @@
   <!-- Individual grave entries -->
   <div class="grave-entry fade-in">
     <img src="images/18-arbelot.jpg" alt="Grave of Fernand Arbelot" loading="lazy">
-    <p class="caption"><strong>Fernand Arbelot</strong> (1880–1942) was a musician, artist, and architect, who wanted to be buried forever gazing into his wife's face.</p>
+  </div>
+  <div class="prose fade-in">
+    <p><strong>Fernand Arbelot</strong> (1880–1942) was a musician, artist, and architect, who wanted to be buried forever gazing into his wife's face.</p>
   </div>
 
   <div class="spacer-lg"></div>
 
   <div class="grave-entry fade-in">
     <img src="images/19-le-royer.jpg" alt="Grave of Philippe Élie Le Royer" loading="lazy">
-    <p class="caption"><strong>Philippe Élie Le Royer</strong> (1816–1897) was once the president of the French Senate, representing the French Left.</p>
+  </div>
+  <div class="prose fade-in">
+    <p><strong>Philippe Élie Le Royer</strong> (1816–1897) was once the president of the French Senate, representing the French Left.</p>
   </div>
 
   <div class="spacer-lg"></div>
 
   <div class="grave-entry fade-in">
     <img src="images/20-delcous.jpg" alt="Grave of Louis-Désiré Delcous" loading="lazy">
-    <p class="caption"><strong>Louis-Désiré Delcous</strong> (1847–1931) was a wine merchant, and an honorary secretary general of the Union of Wholesale Trade of Wines of the Seine.</p>
+  </div>
+  <div class="prose fade-in">
+    <p><strong>Louis-Désiré Delcous</strong> (1847–1931) was a wine merchant, and an honorary secretary general of the Union of Wholesale Trade of Wines of the Seine.</p>
   </div>
 
   <div class="spacer-lg"></div>
 
   <div class="grave-entry fade-in">
     <img src="images/21-talma.jpg" alt="Grave of François-Joseph Talma" loading="lazy">
-    <p class="caption"><strong>François-Joseph Talma</strong> (1763–1826) was an actor whose big debut was in Voltaire's tragedy Mahomet, a play that is still controversial.</p>
+  </div>
+  <div class="prose fade-in">
+    <p><strong>François-Joseph Talma</strong> (1763–1826) was an actor whose big debut was in Voltaire's tragedy Mahomet, a play that is still controversial.</p>
   </div>
 
   <div class="spacer-lg"></div>
 
   <div class="grave-entry fade-in">
     <img src="images/22-denon.jpg" alt="Grave of Vivant Denon" loading="lazy">
-    <p class="caption"><strong>Vivant Denon</strong> (1747–1825) was an artist, writer, and archaeologist, who gave up his law profession when he realized his preference for art, and subsequently wrote <em>Voyage dans la basse et la haute Égypte</em>.</p>
+  </div>
+  <div class="prose fade-in">
+    <p><strong>Vivant Denon</strong> (1747–1825) was an artist, writer, and archaeologist, who gave up his law profession when he realized his preference for art, and subsequently wrote <em>Voyage dans la basse et la haute Égypte</em>.</p>
   </div>
 
   <div class="spacer-lg"></div>
@@ -417,12 +427,12 @@
 
   <div class="spacer-lg"></div>
 
-  <footer class="site-footer">
+  <footer>
     <p>Written by <a href="/">Megha Srivastava</a> · megha at cs dot stanford dot edu</p>
+    <p style="margin-top: 0.6rem;"><a href="/">← meghabytes</a></p>
   </footer>
 
   <script>
-    // Simple fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
