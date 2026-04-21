@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Robot Love — Street Art</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+    :root {
+      --cream: #faf8f3;
+      --ink: #1a1a18;
+      --muted: #6b6860;
+      --accent: #c0392b;
+      --steel: #7f8c9a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'EB Garamond', et-book, Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      padding: 0;
+    }
+
+    header {
+      padding: 4rem 2rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+      border-bottom: 1px solid #d8d3c9;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .subheader {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .intro {
+      max-width: 860px;
+      margin: 2.5rem auto 0;
+      padding: 0 2rem 3rem;
+      border-bottom: 1px solid #d8d3c9;
+    }
+
+    .intro p {
+      max-width: 620px;
+      font-size: 1.05rem;
+      color: #3a3830;
+      line-height: 1.8;
+    }
+
+    /* Gallery */
+    .gallery {
+      max-width: 1100px;
+      margin: 3.5rem auto 5rem;
+      padding: 0 2rem;
+    }
+
+    /* Hero: first image large */
+    .gallery-hero {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery-hero img {
+      width: 100%;
+      max-height: 680px;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* Grid for remaining images */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.2rem;
+    }
+
+    .gallery-grid .cell {
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    /* Before: white blank — smaller, left column */
+    .cell-before {
+      grid-column: 1 / 5;
+      grid-row: 1;
+    }
+
+    /* Robot in flowers — tall, right */
+    .cell-flowers {
+      grid-column: 5 / 9;
+      grid-row: 1;
+    }
+
+    /* Robot in ocean — right column */
+    .cell-ocean {
+      grid-column: 9 / 13;
+      grid-row: 1;
+    }
+
+    .gallery-grid .cell img {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease, filter 0.45s ease;
+      filter: saturate(0.95);
+    }
+
+    .gallery-grid .cell:hover img {
+      transform: scale(1.025);
+      filter: saturate(1.1);
+    }
+
+    /* Captions */
+    .caption-block {
+      margin-top: 0.55rem;
+    }
+
+    .caption-text {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .hero-caption {
+      margin-top: 0.55rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #d8d3c9;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 700px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+      }
+      .cell-before { grid-column: 1 / 2; grid-row: auto; }
+      .cell-flowers { grid-column: 2 / 3; grid-row: auto; }
+      .cell-ocean { grid-column: 1 / 3; grid-row: auto; }
+    }
+
+    a {
+  font-weight: 400;
+  text-shadow: none;
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">Coldwater Canyon &amp; Addison, Los Angeles</p>
+    <h1>Robot <em>Love</em></h1>
+    <p class="subheader">Painting a neighborhood utility box in one day.</p>
+  </header>
+
+  <div class="intro">
+    <p>
+      I've always been a huge fan of community art projects, probably rooted in the Big Sunday community service events I went to growing up in Los Angeles. In the neighborhood of Sherman Oaks (which has now become <i>very trendy </i> since my childhood -- what happened?!), there is a super cool initiative for painting utility boxes called <a href="https://www.letspaintshermanoaks.com/utility-boxes.html">Let's Paint Sherman Oaks!</a>. It's a straightforward application process (the city just needs to approve your design is appropriate), and you receive a stipend to help cover the cost of paints!  Inspired by our research in robotics, a labmate of mine from <a href="iliad.stanford.edu">ILIAD</a> and I spent a whole day in December 2023 painting robots on a utility box at the corner of Coldwater Canyon &amp; Addison. 
+      <br> <br>
+      For the design, I was originally inspired by the spaghetti scene from <i>Lady and the Tramp</i>, but wanted to paint robots instead of dogs. I then thought it would be cute to show a mini-love story: two robots, solo on two frames, followed by a spaghetti-first-date, and then in love under the moonlight :) This was easy to design on Keynote for the submission...but SO hard to paint in person. Painting a utility box requires a good primer (that needs hours to dry!), tackling gravity causing the paint to drip, and a downwards painting angle. We called our painting <i>Robot Love</i>. <br><br>It was all worth it, though, when neighbors walked by and complimented our box! If you're ever in Sherman Oaks, stop by and check it out! 
+    </p>
+  </div>
+
+  <div class="gallery">
+
+    
+
+    <!-- Three-up grid: ocean robot / blank before / flowers robot -->
+    <div class="gallery-grid">
+
+      <div class="cell cell-before">
+        <img src="images/IMG_3629.jpg" alt="Traffic box primed white before painting" />
+        <div class="caption-block">
+          <span class="caption-text">The blank canvas.</span>
+        </div>
+      </div>
+
+      <div class="cell cell-flowers">
+        <img src="images/IMG_3625.jpg" alt="Robot standing among red flowers and green grass" />
+        <div class="caption-block">
+          <span class="caption-text">A robot among red flowers.</span>
+        </div>
+      </div>
+
+      <div class="cell cell-ocean">
+        <img src="images/IMG_3627.jpg" alt="Robot floating in the ocean flying a yellow kite" />
+        <div class="caption-block">
+          <span class="caption-text">A robot flying a kite.</span>
+        </div>
+      </div>
+
+    </div>
+
+    
+
+
+  </div>
+  <!-- Side panel close-up: robot + spaghetti -->
+    <div style="margin-bottom: 1.5rem;">
+      <img src="images/IMG_3628.jpg" alt="Close-up of Robot Love side panel showing robots sharing spaghetti" style="width:100%; max-height:520px; object-fit:cover; border-radius:2px; display:block;" />
+      <div class="caption-block">
+        <span class="caption-text">Two robots sharing a plate of spaghetti.</span>
+      </div>
+    </div>
+    
+
+    <!-- Hero: the night scene showing the full box -->
+    <div class="gallery-hero">
+      <img src="images/IMG_3626.jpg" alt="Robot Love mural on traffic box at night, Coldwater Canyon, Los Angeles" />
+      <div class="hero-caption">
+        <span class="caption-text">The finished mural, and our wet paint cans!</span>
+      </div>
+    </div>
+
+  <footer>
+    All photographs taken at Coldwater Canyon Ave &amp; Addison St, Los Angeles
+  </footer>
+
+</body>
+</html>
