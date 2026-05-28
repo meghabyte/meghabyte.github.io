@@ -42,7 +42,7 @@ const VIZ_DAILY = [{"block": 0, "date": "Jan 01", "temp": -6.0, "sf": 0.0301, "p
 
   /* Top bar: site link + coords + jam link */
   #top-bar {
-    max-width: 1280px;
+    width: 1280px;
     margin: 0 auto 1.6rem;
     display: flex;
     align-items: center;
@@ -69,7 +69,8 @@ const VIZ_DAILY = [{"block": 0, "date": "Jan 01", "temp": -6.0, "sf": 0.0301, "p
   header {
     text-align: center;
     margin: 0.4rem auto 2.4rem;
-    max-width: 900px;
+    width: 1280px;
+    max-width: 1280px;
   }
   header h1 {
     font-family: var(--serif);
@@ -102,12 +103,12 @@ const VIZ_DAILY = [{"block": 0, "date": "Jan 01", "temp": -6.0, "sf": 0.0301, "p
   }
   header .ornament span { font-size: 0.7rem; letter-spacing: 0.3em; font-family: var(--sans); }
 
-  /* 3-col layout */
+  /* 3-col layout — fixed widths; narrow screens scroll horizontally */
   #layout {
-    max-width: 1380px;
+    width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 550px 1fr;
+    grid-template-columns: 480px minmax(0, 1fr);
     grid-template-areas:
       "guide center"
       "guide legend";
@@ -151,7 +152,6 @@ const VIZ_DAILY = [{"block": 0, "date": "Jan 01", "temp": -6.0, "sf": 0.0301, "p
     box-shadow: 0 1px 2px rgba(58,72,40,0.04), 0 8px 24px rgba(58,72,40,0.06);
     border: 1px solid rgba(58,72,40,0.06);
     position: relative; overflow: hidden;
-    transform: translateX(-40px);
   }
   #listening-guide::before {
     content: ''; position: absolute;
@@ -293,16 +293,9 @@ const VIZ_DAILY = [{"block": 0, "date": "Jan 01", "temp": -6.0, "sf": 0.0301, "p
     margin-left: auto; font-size: 0.66rem;
   }
 
-  @media (max-width: 1000px) {
-    #layout { grid-template-columns: 1fr; gap: 1.4rem; }
-    header h1 { font-size: 1.9rem; }
-    #current-date { font-size: 1.9rem; }
-  }
-  @media (max-width: 640px) {
-    body { padding: 1.4rem 1rem 2rem; }
-    #top-bar { flex-direction: column; align-items: flex-start; gap: 0.5rem; font-size: 0.65rem; }
-    header h1 { font-size: 1.6rem; }
-  }
+  /* Fixed-width layout: narrow screens scroll horizontally rather than reflowing.
+     The listening guide always keeps its full width. */
+
 </style>
 </head>
 <body>

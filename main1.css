@@ -45,7 +45,8 @@ hr {
 
 .nav-list {
     list-style-type: none;
-    margin: 0 5px 0 10px
+    margin: 0 5px 0 10px;
+    font-size: 22px;
 }
 
 .alignable,.pull-left,.pull-right {
@@ -85,11 +86,37 @@ hr {
 
 @media (max-width: 650px) {
     .container {
-        max-width:83%
+        max-width: 83%
     }
 
-    .navbar-ul {
-        margin-top: 5px
+    .navbar {
+        text-align: center;
+        padding: 50px 0px 0px 0px
+    }
+
+    #author-name {
+        width: 100%;
+        float: none
+    }
+
+    #navlist {
+        padding: 10px 0 10px 0;
+        margin: 0;
+        display: block;
+        float: none;
+        text-align: center;
+        width: 100%
+    }
+
+    #navlist li.alignable,
+    #navlist li.pull-left,
+    #navlist li.pull-right {
+        display: inline-block;
+        float: none
+    }
+
+    #navlist li.nav-list {
+        margin: 0 5px
     }
 }
 
