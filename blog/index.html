@@ -3,188 +3,496 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random — meghabytes</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Remove the Google Fonts Lora link and replace with: -->
-<style>
-  @font-face {
-    font-family: 'et-book';
-    src: url('https://edwardtufte.github.io/et-book/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-</style>
+  <meta name="description" content="Notes, experiments, field observations, and small computational projects by Megha." />
+  <title>blog — meghabytes</title>
   <style>
-    :root {
-      --color-bg: #FAF7F2;
-      --color-text: #2C2825;
-      --color-text-secondary: #6B6560;
-      --color-accent: #808A3B;
-      --color-accent-hover: #6B7432;
-      --color-border: #E5DDD4;
-      --color-someday: #C4BAB0;
-      --font-display: 'et-book', Palatino, 'Book Antiqua', Georgia, serif;
-      --font-body: 'DM Sans', system-ui, sans-serif;
+    @font-face {
+      font-family: "et-book";
+      src: url("https://edwardtufte.github.io/et-book/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff;
+      --text: #302832;
+      --muted: #6f606c;
+      --title: mediumvioletred;
+      --accent: #8d5ab4;
+      --accent-dark: #70418f;
+      --lavender: #eee6f7;
+      --line: #b69bcf;
+      --faint: #9c87a3;
+      --display: "et-book", Palatino, "Book Antiqua", Georgia, serif;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg); }
 
     body {
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem;
     }
+
+    a { color: inherit; }
 
     .page {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 42px 0 64px;
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .home-link {
+      color: var(--title);
+      font: 400 clamp(1.45rem, 2vw, 1.8rem)/1 var(--display);
+      text-decoration: none;
+    }
+
+    .home-link:hover { color: #981367; }
+
+    .intro {
       max-width: 620px;
-      width: 100%;
-      text-align: center;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font: italic 400 0.82rem/1.3 var(--display);
     }
 
-    h1 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 1.3rem;
-      color: var(--color-text-secondary);
-      margin-bottom: 3rem;
-      letter-spacing: 0.01em;
-    }
-
-    h1 a {
-      color: var(--color-accent);
-      text-decoration: none;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-
-    .links a {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      line-height: 1.4;
-      color: var(--color-text);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .links a:hover {
-      color: var(--color-accent);
-    }
-
-    .links a .note {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      color: var(--color-text-secondary);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── Someday list ── */
-    .someday {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--color-border);
-    }
-
-    .someday-label {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
+    .shuffle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 6px 0;
+      background: transparent;
+      color: var(--muted);
+      font: 600 0.68rem/1 var(--sans);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-someday);
-      margin-bottom: 1.2rem;
+      cursor: pointer;
     }
 
-    .someday-list {
+    .shuffle::before { content: "↝"; font-size: 1rem; font-weight: 400; }
+    .shuffle:hover, .shuffle:focus-visible { color: var(--accent-dark); border-color: var(--accent); }
+
+    .controls { text-align: right; }
+
+    .dimension-pair {
+      margin: 8px 0 0;
+      color: var(--faint);
+      font: italic 400 0.82rem/1.3 var(--display);
+      white-space: nowrap;
+    }
+
+    .constellation {
+      position: relative;
+      height: clamp(650px, 70vw, 790px);
+      min-height: 650px;
+      margin-top: 24px;
+      isolation: isolate;
+    }
+
+    .connections {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .connections line {
+      stroke: var(--line);
+      stroke-width: 1;
+      stroke-dasharray: 2 7;
+      opacity: 0;
+      transition: opacity 180ms ease, stroke 180ms ease;
+    }
+
+    .connections line.active { stroke: var(--accent); opacity: 0.72; }
+
+    .connections text {
+      fill: var(--accent-dark);
+      paint-order: stroke;
+      stroke: white;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      font: 600 10px/1 var(--sans);
+      opacity: 0;
+      transition: opacity 180ms ease;
+    }
+
+    .connections text.active { opacity: 0.9; }
+
+    .project {
+      position: absolute;
+      z-index: 1;
+      width: max-content;
+      max-width: 280px;
+      padding: 9px 12px 8px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--lavender) 62%, white);
+      font: 400 clamp(1.04rem, 1.7vw, 1.32rem)/1.2 var(--display);
+      text-decoration: none;
+      transform: translate(-50%, -50%);
+      transition: color 160ms ease, border-color 160ms ease, background 160ms ease,
+                  box-shadow 160ms ease, opacity 160ms ease;
+    }
+
+    .project .note {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font: 600 0.63rem/1.25 var(--sans);
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+    }
+
+    .project:hover, .project:focus-visible {
+      z-index: 3;
+      outline: none;
+      border-color: var(--line);
+      background: color-mix(in srgb, var(--lavender) 88%, white);
+      color: var(--accent-dark);
+      box-shadow: 0 8px 28px rgba(62, 52, 42, 0.08);
+    }
+
+    .constellation.has-focus .project:not(.related) { opacity: 0.32; }
+    .constellation.has-focus .project.related { opacity: 1; }
+
+    .future {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 28px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .future h2 {
+      margin: 2px 0 0;
+      color: var(--faint);
+      font: 600 0.68rem/1.4 var(--sans);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .future-list {
       display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      flex-wrap: wrap;
+      gap: 7px 22px;
     }
 
-    .someday-list span {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      color: var(--color-someday);
-      font-style: italic;
+    .future-list span {
+      color: var(--faint);
+      font: italic 400 1rem/1.45 var(--display);
     }
 
-    @media (max-width: 500px) {
-      body { padding: 3rem 1.5rem; }
-      .links a { font-size: 1.1rem; }
+    @media (max-width: 720px) {
+      .page { width: min(100% - 32px, 620px); padding-top: 30px; }
+      .masthead { grid-template-columns: 1fr; gap: 12px; }
+      .intro { margin-top: 14px; }
+      .controls, .connections { display: none; }
+
+      .constellation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        height: auto;
+        min-height: 0;
+        margin: 38px 0 58px;
+      }
+
+      .project {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: auto;
+        min-height: 104px;
+        max-width: none;
+        padding: 14px;
+        border-color: var(--line);
+        transform: none;
+      }
+
+      .future { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    @media (max-width: 430px) {
+      .constellation { grid-template-columns: 1fr; }
+      .project { min-height: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
+  <main class="page">
+    <header class="masthead">
+      <div>
+        <a class="home-link" href="/">meghabytes</a>
+        <p class="intro">i assign each post or project to a document embedding from openai's embeddings API, which are then reduced to eight latent dimensions with pca. the rearrange button picks two random dimensions, and the lines and numbers show similarity for nearest neighbors within that project. <span aria-label="This interaction is available on desktop">(interactive on desktop only, sorry!)</span></p>
+      </div>
+      <div class="controls">
+        <button class="shuffle" type="button" aria-label="Rearrange using a different pair of latent dimensions">rearrange</button>
+        <p class="dimension-pair" aria-live="polite"></p>
+      </div>
+    </header>
 
-  <div class="page">
+    <section class="constellation" aria-label="Projects and notes">
+      <svg class="connections" aria-hidden="true"></svg>
+      <a class="project" data-cluster="ai" data-visual="88" data-length="55" data-technical="70" data-place="12" data-generative="92" data-collaborative="68" data-systemic="60" data-longitudinal="22" href="https://sites.google.com/view/pandemicdreams/home">pandemic dreams <span class="note">CVPR 2023 · with Midjourney</span></a>
+      <a class="project" data-cluster="collections" data-visual="20" data-length="72" data-technical="12" data-place="58" data-generative="28" data-collaborative="8" data-systemic="55" data-longitudinal="94" href="books.html">book for every country challenge</a>
+      <a class="project" data-cluster="field" data-visual="68" data-length="35" data-technical="28" data-place="88" data-generative="8" data-collaborative="15" data-systemic="18" data-longitudinal="88" href="https://sites.google.com/view/garden-plot-17/home">current status of garden plot #17</a>
+      <a class="project" data-cluster="ai" data-visual="12" data-length="85" data-technical="96" data-place="8" data-generative="62" data-collaborative="72" data-systemic="96" data-longitudinal="78" href="research/aiscience-claude-25.html">AI4Science and pharmacovigilance</a>
+      <a class="project" data-cluster="ai" data-visual="95" data-length="64" data-technical="88" data-place="18" data-generative="98" data-collaborative="12" data-systemic="48" data-longitudinal="34" href="https://github.com/meghabyte/arrival-logograms-generation">generating logograms from <i>Arrival</i> <span class="note">with Stable Diffusion</span></a>
+      <a class="project" data-cluster="data" data-visual="76" data-length="56" data-technical="78" data-place="75" data-generative="72" data-collaborative="22" data-systemic="86" data-longitudinal="92" href="bansuri.html">Hubbard Brook Experimental Forest data sonification</a>
+      <a class="project" data-cluster="collections" data-visual="50" data-length="32" data-technical="6" data-place="90" data-generative="12" data-collaborative="8" data-systemic="42" data-longitudinal="52" href="travel/museums.html">a list of small museums</a>
+      <a class="project" data-cluster="data" data-visual="48" data-length="46" data-technical="94" data-place="10" data-generative="78" data-collaborative="96" data-systemic="72" data-longitudinal="38" href="https://meghabyte.github.io/visualizations-halie/visualizations/crossword/">human–AI collaborative crossword solving</a>
+      <a class="project" data-cluster="collections" data-visual="22" data-length="25" data-technical="8" data-place="20" data-generative="18" data-collaborative="6" data-systemic="16" data-longitudinal="42" href="teas.html">tea ranking</a>
+      <a class="project" data-cluster="field" data-visual="78" data-length="62" data-technical="4" data-place="98" data-generative="6" data-collaborative="10" data-systemic="66" data-longitudinal="18" href="travel/uluru.html">uluṟu–kata tjuṯa national park</a>
+      <a class="project" data-cluster="collections" data-visual="8" data-length="66" data-technical="42" data-place="14" data-generative="20" data-collaborative="8" data-systemic="38" data-longitudinal="84" href="classes.html">my favorite classes at Stanford</a>
+      <a class="project" data-cluster="field" data-visual="72" data-length="54" data-technical="5" data-place="96" data-generative="8" data-collaborative="6" data-systemic="40" data-longitudinal="20" href="travel/pere-lachaise-nov24.html">le cimetière du père lachaise</a>
+      <a class="project" data-cluster="art" data-visual="92" data-length="30" data-technical="48" data-place="25" data-generative="82" data-collaborative="38" data-systemic="24" data-longitudinal="28" href="robot-art.html">painting robots on a utility box</a>
+      <a class="project" data-cluster="field" data-visual="96" data-length="28" data-technical="10" data-place="94" data-generative="14" data-collaborative="6" data-systemic="34" data-longitudinal="24" href="travel/maine.html">textures of coastal Maine</a>
+    </section>
 
-    <h1><a href="/">meghabytes</a></h1>
-
-    <div class="links">
-      <a href="https://sites.google.com/view/pandemicdreams/home">pandemic dreams <span class="note">cvpr 2023, w/ Midjourney</span></a>
-      <a href="books.html">book for every country challenge</a>
-      <a href="https://sites.google.com/view/garden-plot-17/home">current status of garden plot #17</a>
-      <a href="research/aiscience-claude-25.html">ai4science and pharmacovigilance</a>
-      <a href="https://github.com/meghabyte/arrival-logograms-generation">generating logograms from arrival <span class="note">w/ Stable Diffusion</span></a>
-      <a href="bansuri.html">hubbard brook experimental forest data sonification</a>
-      <a href="travel/museums.html">a list of small museums</a>
-      <a href="https://meghabyte.github.io/visualizations-halie/visualizations/crossword/">human-AI collaborative crossword solving</a>
-      <a href="teas.html">tea ranking</a>
-      <a href="travel/uluru.html">uluṟu-kata tjuṯa national park</a>
-      <a href="classes.html">my favorite classes at stanford</a>
-      <a href="travel/pere-lachaise-nov24.html">le cimetière du père lachaise</a>
-      <a href="robot-art.html">painting robots on a utility box</a>
-      <a href="travel/maine.html">textures of coastal maine</a>
-    </div>
-
-    <div class="someday">
-      <p class="someday-label">someday</p>
-      <div class="someday-list">
+    <section class="future" aria-labelledby="future-heading">
+      <h2 id="future-heading">future</h2>
+      <div class="future-list">
         <span>west highland way</span>
         <span>amtrak empire builder</span>
         <span>jacarandas of the san fernando valley</span>
         <span>nocturne no. 13 in c minor over time</span>
-        <span>coffee "water"-colors</span>
-        <span>list of beautiful sentences</span>
-        <span>autumn on stanford campus</span>
+        <span>coffee “water”-colors</span>
+        <span>the synchronous fireflies</span>
+        <span>autumn on Stanford campus</span>
         <span>magnolia maps</span>
       </div>
-    </div>
+    </section>
+  </main>
 
-  </div>
+  <script>
+    (() => {
+      const field = document.querySelector('.constellation');
+      const projects = [...field.querySelectorAll('.project')];
+      const svg = field.querySelector('.connections');
+      const shuffle = document.querySelector('.shuffle');
+      const dimensionPair = document.querySelector('.dimension-pair');
+      const narrow = () => window.matchMedia('(max-width: 720px)').matches;
+      let resizeTimer;
+      let currentDimensions = [0, 1];
+      const fallbackKeys = ['visual', 'length', 'technical', 'place', 'generative', 'collaborative', 'systemic', 'longitudinal'];
 
-  <div hidden style="text-align: center;font-size: 30px; font-family: 'EB Garamond';">
-    indian textiles (w/ DALLE-2)
-    <br>
-    dataset yelp repository
-    <br>
-    surrealism (w/ midjourney)
-    <br>
-    useless dataset #1: instagram palette
-    <br>
-    useless dataset #2: search queries
-    <br>
-    recreating my year in seattle (w/ DALLE-2)
-    <br>
-    in-context learning weekly menu
-    <br>
-    how to create a font
-    <br> useless dataset #3: windhover leaves
-    <br> purple jacarandas of the san fernando valley
-    <br> autumn on stanford campus
-    <br> list of beautiful sentences
-    <br><br><br>
-</div>
+      const vectorFor = (project) => project.dataset.embedding
+        ? project.dataset.embedding.split(',').map(Number)
+        : fallbackKeys.map((key) => Number(project.dataset[key]));
 
+      function arrange() {
+        if (narrow()) {
+          svg.replaceChildren();
+          projects.forEach((project) => {
+            project.style.left = '';
+            project.style.top = '';
+          });
+          return;
+        }
+
+        const width = field.clientWidth;
+        const height = field.clientHeight;
+        const vectors = projects.map(vectorFor);
+        const valuesX = vectors.map((vector) => vector[currentDimensions[0]]);
+        const valuesY = vectors.map((vector) => vector[currentDimensions[1]]);
+        const minX = Math.min(...valuesX);
+        const maxX = Math.max(...valuesX);
+        const minY = Math.min(...valuesY);
+        const maxY = Math.max(...valuesY);
+        const normalize = (value, low, high) => high === low ? 0.5 : (value - low) / (high - low);
+        const points = projects.map((project) => {
+          const index = projects.indexOf(project);
+          const halfWidth = project.offsetWidth / 2;
+          const halfHeight = project.offsetHeight / 2;
+          const nx = normalize(valuesX[index], minX, maxX);
+          const ny = normalize(valuesY[index], minY, maxY);
+          const targetX = halfWidth + 18 + nx * (width - halfWidth * 2 - 36);
+          const targetY = halfHeight + 18 + ny * (height - halfHeight * 2 - 36);
+          return { project, vector: [nx, ny], x: targetX, y: targetY, targetX, targetY, halfWidth, halfHeight };
+        });
+
+        // Resolve collisions with the labels' real rectangular dimensions, while
+        // gently pulling each project back toward its hand-authored semantic position.
+        for (let pass = 0; pass < 320; pass += 1) {
+          points.forEach((point) => {
+            if (pass < 180) {
+              point.x += (point.targetX - point.x) * 0.006;
+              point.y += (point.targetY - point.y) * 0.006;
+            }
+          });
+          for (let a = 0; a < points.length; a += 1) {
+            for (let b = a + 1; b < points.length; b += 1) {
+              const p = points[a];
+              const q = points[b];
+              const dx = q.x - p.x || 0.01;
+              const dy = q.y - p.y || 0.01;
+              const overlapX = p.halfWidth + q.halfWidth + 20 - Math.abs(dx);
+              const overlapY = p.halfHeight + q.halfHeight + 16 - Math.abs(dy);
+              if (overlapX > 0 && overlapY > 0) {
+                if (overlapX < overlapY) {
+                  const push = overlapX * 0.52 * Math.sign(dx);
+                  p.x -= push;
+                  q.x += push;
+                } else {
+                  const push = overlapY * 0.52 * Math.sign(dy);
+                  p.y -= push;
+                  q.y += push;
+                }
+              }
+            }
+          }
+          points.forEach((p) => {
+            p.x = Math.max(p.halfWidth + 8, Math.min(width - p.halfWidth - 8, p.x));
+            p.y = Math.max(p.halfHeight + 8, Math.min(height - p.halfHeight - 8, p.y));
+          });
+        }
+
+        points.forEach(({ project, x, y }) => {
+          project.style.left = `${x}px`;
+          project.style.top = `${y}px`;
+        });
+        drawConnections(points, width, height);
+      }
+
+      // Join every post to its two closest neighbors in the active latent plane.
+      function nearestEdges(points) {
+        const edges = new Map();
+        points.forEach((point, a) => {
+          points
+            .map((candidate, b) => ({
+              b,
+              distance: a === b ? Infinity : Math.hypot(point.vector[0] - candidate.vector[0], point.vector[1] - candidate.vector[1])
+            }))
+            .sort((left, right) => left.distance - right.distance)
+            .slice(0, 2)
+            .forEach(({ b, distance }) => {
+              const low = Math.min(a, b);
+              const high = Math.max(a, b);
+              const similarity = Math.max(0, 1 - distance / Math.SQRT2);
+              edges.set(`${low}-${high}`, [low, high, similarity]);
+            });
+        });
+        return [...edges.values()];
+      }
+
+      function drawConnections(points, width, height) {
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        svg.replaceChildren();
+        const ns = 'http://www.w3.org/2000/svg';
+        nearestEdges(points).forEach(([a, b, similarity]) => {
+          const p = points[a];
+          const q = points[b];
+          const edgePoint = (from, to) => {
+            const dx = to.x - from.x;
+            const dy = to.y - from.y;
+            const scale = 1 / Math.max(
+              Math.abs(dx) / (from.halfWidth + 5),
+              Math.abs(dy) / (from.halfHeight + 5)
+            );
+            return { x: from.x + dx * scale, y: from.y + dy * scale };
+          };
+          const start = edgePoint(p, q);
+          const end = edgePoint(q, p);
+          const line = document.createElementNS(ns, 'line');
+          line.setAttribute('x1', start.x);
+          line.setAttribute('y1', start.y);
+          line.setAttribute('x2', end.x);
+          line.setAttribute('y2', end.y);
+          line.dataset.from = a;
+          line.dataset.to = b;
+          svg.append(line);
+          const label = document.createElementNS(ns, 'text');
+          label.setAttribute('x', (start.x + end.x) / 2);
+          label.setAttribute('y', (start.y + end.y) / 2);
+          label.setAttribute('text-anchor', 'middle');
+          label.setAttribute('dominant-baseline', 'central');
+          label.dataset.from = a;
+          label.dataset.to = b;
+          label.textContent = similarity.toFixed(2);
+          svg.append(label);
+        });
+      }
+
+      function highlight(project) {
+        const projectIndex = projects.indexOf(project);
+        const related = new Set([projectIndex]);
+        svg.querySelectorAll('line, text').forEach((connection) => {
+          const from = Number(connection.dataset.from);
+          const to = Number(connection.dataset.to);
+          const active = from === projectIndex || to === projectIndex;
+          connection.classList.toggle('active', active);
+          if (active) related.add(from === projectIndex ? to : from);
+        });
+        field.classList.add('has-focus');
+        projects.forEach((item, index) => item.classList.toggle('related', related.has(index)));
+      }
+
+      function clearHighlight() {
+        field.classList.remove('has-focus');
+        projects.forEach((item) => item.classList.remove('related'));
+        svg.querySelectorAll('line, text').forEach((connection) => connection.classList.remove('active'));
+      }
+
+      function updateLens() {
+        shuffle.textContent = 'rearrange';
+        dimensionPair.textContent = `latent dimensions ${currentDimensions[0] + 1} × ${currentDimensions[1] + 1}`;
+        arrange();
+      }
+
+      projects.forEach((project) => {
+        project.addEventListener('mouseenter', () => highlight(project));
+        project.addEventListener('mouseleave', clearHighlight);
+        project.addEventListener('focus', () => highlight(project));
+        project.addEventListener('blur', clearHighlight);
+      });
+
+      shuffle.addEventListener('click', () => {
+        const previous = [...currentDimensions].sort().join('-');
+        let next;
+        do {
+          const first = Math.floor(Math.random() * 8);
+          let second = Math.floor(Math.random() * 7);
+          if (second >= first) second += 1;
+          next = [first, second];
+        } while ([...next].sort().join('-') === previous);
+        currentDimensions = next;
+        updateLens();
+      });
+
+      window.addEventListener('resize', () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(arrange, 120);
+      });
+
+      if (document.fonts?.ready) document.fonts.ready.then(updateLens);
+      else window.addEventListener('load', updateLens, { once: true });
+    })();
+  </script>
 </body>
 </html>
