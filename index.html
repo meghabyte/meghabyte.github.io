@@ -19,6 +19,24 @@
     <style>
       body, p, li, ul { font-family: 'Lora', Georgia, serif; }
       a:hover { color: #808A3B !important; }
+      .navbar { display: flex !important; align-items: center; justify-content: space-between; }
+      .navbar .alignable { float: none !important; }
+      .navbar .navbar-ul { display: flex; align-items: center; margin: 0 !important; padding: 0; list-style: none; }
+      .navbar .nav-list { float: none !important; }
+      .navbar #author-name { display: block; }
+      .wrapper, .wrapper .container { max-width: 1100px !important; width: 100% !important; box-sizing: border-box; margin-left: auto !important; margin-right: auto !important; }
+      .wrapper { padding-left: 20px !important; padding-right: 20px !important; }
+      .navbar { flex-wrap: wrap; gap: 8px 20px; }
+      .profile-col { float: left; width: 240px; margin: 0 24px 12px 0; text-align: center; }
+      @media (max-width: 600px) { .profile-col { float: none; margin: 0 auto 16px; } }
+      .profile-picture { display: block; width: 240px !important; height: 240px !important; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0 !important; margin: 0 0 10px 0 !important; float: none !important; }
+      .social-icons { display: flex; justify-content: center; gap: 20px; }
+      .social-icons a { color: #555; display: inline-flex; }
+      .social-icons a { align-items: center; }
+      .cv-text { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 700; font-size: 15px; line-height: 20px; letter-spacing: 0.02em; }
+      .navbar { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+      .navbar + div + hr, .wrapper > hr { margin-top: 2px !important; }
+      .social-icons svg { width: 20px; height: 20px; }
     </style>
     
     
@@ -44,11 +62,7 @@
             
             <div class="alignable pull-left">
   <a id="author-name" href="https://meghabyte.github.io">Megha Srivastava</a>
-  <p style="font-size: 0.75em; font-style: italic; margin: 0;">
-    megha at cs dot stanford dot edu 
-  </p>
 </div>
-<br>
             <ul id="navlist" class="alignable pull-right navbar-ul">
                 
                 
@@ -70,12 +84,8 @@
                     
                     
                         </li>
-                        <li class="alignable pull-left nav-list"><a href="resume.pdf">CV</a>
-                    
-                    
-                        </li>
 
-                        <li class="alignable pull-left nav-list"><a href="contact.html">Contact</a>
+                        <li class="alignable pull-left nav-list"><a href="teaching.html">Teaching</a>
                     
                     
                         
@@ -90,8 +100,27 @@
         
             <div class="container content">
         
-                <p><img class="profile-picture" src="photo/megha_darjeeling_square.jpeg" /></p>
-
+                <div class="profile-col">
+<img class="profile-picture" src="photo/megha_darjeeling_square.jpeg" />
+<div class="social-icons">
+    <a href="mailto:megha@cs.stanford.edu" aria-label="Email" title="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+    </a>
+    <a href="https://github.com/meghabyte" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+    <a href="https://scholar.google.com/citations?user=GVGPoSwAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+    </a>
+    <a href="https://twitter.com/megha_byte" target="_blank" rel="noopener" aria-label="Twitter" title="Twitter">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/meghabytes/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+    </a>
+    <a href="resume.pdf" target="_blank" aria-label="CV" title="CV"><span class="cv-text">CV</span></a>
+  </div>
+</div>
 <p> Hi! I am a <b>final-year</b> PhD candidate in Computer Science at Stanford University.  
     I am co-advised by <strong><a href="https://crypto.stanford.edu/~dabo/">Dan Boneh</a></strong> and <strong><a href="https://dorsa.fyi/">Dorsa Sadigh</a></strong>. 
     I am also an AI Science Writer at  <strong><a href="https://anthropic.com">Anthropic</a></strong>. 
@@ -103,13 +132,15 @@
   My research sits at the intersection of
   <strong>machine learning, safety, and security</strong>,
   with a focus on
-  <strong>reducing both the computational and cognitive costs of verifying modern AI systems</strong>. <br>
-  I take an end-to-end approach to improve our ability to audit, understand,
-  and learn from model behavior across diverse domains.
-  Some of my recent projects include:
+  <strong>reducing both the computational and cognitive costs of verifying modern AI systems</strong>. 
+   I take an end-to-end approach to verification, from hardware-level auditing of neural networks to modeling human learning and decision-making under AI assistance. <br>
 </p>
+<p>My research is supported by the NSF GRFP and IBM PhD Fellowship, and has been recognized through an <a href="https://arxiv.org/abs/1806.08010"><strong>ICML Best Paper Runner-Up Award</strong></a> and the <a href="https://hripioneers.org/"><strong>HRI Pioneers</strong></a> and <a href="https://www.cs.umd.edu/node/24918"><strong>ML Rising Stars</strong></a> programs. During my PhD, I have interned at <a href="https://www.genesis.ml/"><strong>Genesis Molecular AI</strong></a>,  visited the <a href="https://lingo.csail.mit.edu/"><strong>LINGO</strong></a> lab at MIT, and collaborated closely with Stanford's <a href="https://cocolab.stanford.edu/"><strong>Computation & Cognition Lab</strong>.</a>   I completed my undergrad in Computer Science and Creative Writing at Stanford, where I was a member of the <strong><a href="https://nlp.stanford.edu/">Stanford NLP group</a></strong> and received the <strong>Ben Wegbreit Prize for Best Undergraduate Honors Thesis</strong>.</p>
 
-<ol style="font-size:14px">
+<h3 id="projects" style="clear: left">Selected Projects</h3>
+
+<div class="projects-box" style="clear: left; background-color: #fff7ed; border: 1px solid #fde8d0; border-radius: 10px; padding: 10px 16px;">
+<ol style="margin: 0;">
   <li>
     <strong style="color: #d97706;">Optimistic verifiable training</strong> and
     <strong style="color: #d97706;">Hawkeye</strong>,
@@ -125,9 +156,9 @@
   </li>
 
   <li>
-    <strong style="color: #d97706;">Z-COACH</strong>,
-    a shared-autonomy algorithm for teaching humans motor skills from expert AI policies, with Toyota
-    (<a href="https://arxiv.org/abs/2502.19899">HRI '25</a>).
+    <strong style="color: #d97706;">Proximal State Nudging</strong> and <strong style="color: #d97706;">Z-COACH</strong>,
+     shared-autonomy algorithms for mitigating skill atrophy and improving learning from expert AI policies using cognitive scaffolding, with Toyota
+    (<a href="https://arxiv.org/abs/2502.19899">HRI '25</a>, <a href="https://arxiv.org/abs/2605.20355">RA-L '26</a>).
   </li>
 
   <li>
@@ -138,17 +169,18 @@
 
   <li>
     <strong style="color: #d97706;">Pyrite</strong>,
-    a benchmark and model that helps human experts evaluate diffusion-predicted protein–ligand poses
-    (<a href="https://arxiv.org/abs/2611.14511">preprint</a>).
+    a benchmark and model trained with GRPO to help chemists evaluate diffusion-predicted protein–ligand poses
+    (<a href="https://arxiv.org/abs/2611.14511">Agentic AI for Biological Discovery @NeurIPS '26</a>).
   </li>
 </ol>
+</div>
+
 
     
-<p>My research is supported by the NSF GRFP and IBM PhD Fellowship. During my PhD, I have interned at <a href="https://www.genesis.ml/"><strong>Genesis Molecular AI</strong></a>,  visited the <a href="https://lingo.csail.mit.edu/"><strong>LINGO</strong></a> lab at MIT, and collaborated closely with Stanford's <a href="https://cocolab.stanford.edu/"><strong>Computation & Cognition Lab</strong>.</a>   I completed my undergrad in Computer Science and Creative Writing at Stanford, where I was a member of the <strong><a href="https://nlp.stanford.edu/">Stanford NLP group</a></strong> and received the <strong>Ben Wegbreit Prize for Best Undergraduate Honors Thesis in Computer Science</strong>.</p>
   
 
     
-    <h3 id="updates">Updates</h3>
+    <h3 id="updates">Recent Updates</h3>
     <style>
         .updates-scroll::-webkit-scrollbar {
           width: 10px;
@@ -164,13 +196,13 @@
           background: #555;
         }
       </style>
-    <div class="updates-scroll" style="max-height: 200px; overflow-y: scroll; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+    <div class="updates-scroll" style="max-height: 200px; overflow-y: scroll; padding: 15px; border: 1px solid #cfe0f2; border-radius: 8px; background-color: #f0f6fd;">
 
        <p><strong>November 2026</strong>:  Invited talk <i>"Children of the Magenta Line: Building Learning-Aware Shared Autonomy with Cognitive Scaffolding"</i>  at the <a href="https://robotics.cs.washington.edu/#colloquium"> University of Washington Robotics Colloquium.</a> </p>
 
-       <p><strong>November 2026</strong>:  Released our preprint, <a "https://arxiv.org/abs/2611.14511">Pyrite: Building and Benchmarking Protein-Ligand Pose Ranking Agents</a>, from my internship with <a href="https://genesis.ml/">Genesis Molecular AI</a>. </p>
+       <p><strong>November 2026</strong>:  Released our new preprint <a href="https://arxiv.org/abs/2611.14511">Pyrite: Building and Benchmarking Protein-Ligand Pose Ranking Agents</a>. </p>
 
-       <p><strong>October 2026</strong>: Presenting our new preprint <a href="https://arxiv.org/pdf/2605.20355">Proximal State Nudging: Reducing Skill Atrophy from AI Assistance</a>, in collaboration with Toyota, at the <a href="https://aisafety.stanford.edu/events/annual-meeting-2026.html">Stanford Center for AI Safety Annual Meeting</a>. </p>
+       <p><strong>October 2026</strong>: Presenting  <a href="https://arxiv.org/pdf/2605.20355">Proximal State Nudging: Reducing Skill Atrophy from AI Assistance</a> at the <a href="https://aisafety.stanford.edu/events/annual-meeting-2026.html">Center for AI Safety Annual Meeting</a>. </p>
 
       <p><strong>Summer 2026</strong>: Research Intern at <a href="https://genesis.ml/">Genesis Molecular AI</a> on post-training for AI-assisted small molecule drug discovery.</p>
 

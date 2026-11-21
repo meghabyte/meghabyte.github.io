@@ -1,0 +1,253 @@
+<html>
+<style type="text/css"> 
+  body {
+  background-color: #FFFFFF; 
+font-family: 'Source Serif Pro';
+color: #292929;
+}
+ 
+a{
+  text-decoration: none;
+  line-height: 1.3em;
+  color:#3d4254;
+  font-size:1.05em;}
+ 
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:active {text-decoration: none;}
+a:hover{color:#808000;}
+ 
+a.reverse{ 
+  color:#848484; 
+  font-size:1em;
+} 
+ 
+a.reverse:hover{color:#808000;}
+ 
+u {    
+    border-bottom: 1px dotted #848484;
+    text-decoration: none;
+}
+ 
+.greylink{ 
+  color : #808000
+}
+ 
+authors{
+  line-height:1.3em;
+  color:#848484;
+  font-size:.8em;
+  padding-top:2em;
+} 
+</style>
+ 
+ 
+<head>
+<title>Contact</title>
+ 
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="stylesheet" href="main1.css">
+ 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121338330-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-121338330-1');
+</script>
+ 
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+ 
+<style>
+  .wrapper, .wrapper .container { max-width: 1100px !important; width: 100% !important; box-sizing: border-box; margin-left: auto !important; margin-right: auto !important; }
+  .wrapper { padding-left: 20px !important; padding-right: 20px !important; }
+  .navbar { display: flex !important; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 0 !important; padding-bottom: 0 !important; }
+  .navbar .alignable, .navbar .nav-list { float: none !important; }
+  .navbar .navbar-ul { display: flex; align-items: center; margin: 0 !important; padding: 0; list-style: none; }
+  .teaching-content h2 { font-weight: normal; margin: 0; }
+  .teaching-content ul { padding-left: 1.2em; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+  <div class="wrapper">
+        <div class="navbar container">
+            
+            <div class="alignable pull-left">
+  <a id="author-name" href="https://meghabyte.github.io">Megha Srivastava</a>
+</div>
+            <ul id="navlist" class="alignable pull-right navbar-ul">
+                
+                
+                    
+                        <li class="alignable pull-left nav-list"><a href="research.html">Publications</a>
+                    
+                    
+                        
+                    
+                        </li>
+                
+                    
+                        <li class="alignable pull-left nav-list"><a href="https://sites.google.com/view/meghapixels" target="_blank">Photography</a>
+                    
+                    
+                        </li>
+
+                        <li class="alignable pull-left nav-list"><a href="blog/index.html">Blog</a>
+                    
+                    
+                        </li>
+
+                        <li class="alignable pull-left nav-list"><a href="teaching.html">Teaching</a>
+                    
+                    
+                        
+                    
+                        </li>
+
+                
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <hr>
+ 
+<main>
+<div class="container content teaching-content">
+<br>
+
+<div style="padding:.05em; padding-bottom:.005em; padding-top:0; padding-left:0; font-size:20pt; text-align:left;">Teaching</div>
+<br>
+<div style="padding:.05em; padding-bottom:.005em; padding-top:0; padding-left:0; font-size:14pt; text-align:left;">Stanford Courses</div>
+<div style="padding:.0001em; padding-left:0; padding-bottom:.05em; font-size:11pt; text-align:left;">
+  <ul><li><a href="https://cs224r.stanford.edu/">CS 224R: Deep Reinforcement Learning</a> (Spring 2026, Instructor: Chelsea Finn)</li>
+    <li><a href="https://cs255.stanford.edu/">CS 255: Introduction to Cryptography</a> (Winter 2025, Instructor: Dan Boneh)</li><li><a href="https://cs221.stanford.edu/">CS 221: Artificial Intelligence: Principles and Techniques</a> (Fall 2018, Instructor: Percy Liang)</li></ul>
+  </div>
+  <div style="padding:.05em; padding-bottom:.005em; padding-top:0; padding-left:0; font-size:14pt; text-align:left;">Outreach</div>
+
+<div style="padding:.0001em; padding-left:0; padding-bottom:.05em; font-size:11pt; text-align:left;">
+  <ul><li><a href="https://ssg.stanford.edu/">Science Small Groups</a> (Fall 2025, virtual research training program for students at local community colleges)</li>
+    <li><a href="https://neurips.cc/Conferences/2022/EducationOutreach">NeurIPS New Orleans High School Outreach</a> (Winter 2022)</li><li><a href="https://www.stanfordesp.org/">Stanford Splash: Demystifying Hot Topics in Computer Science</a> (Fall 2017)</li></ul>
+  </div>
+ 
+<br><br>
+</div>
+<div style="position:fixed;right:0;top:0;bottom:0;width:360px;pointer-events:none;z-index:0;">
+  <canvas id="gol" width="360" style="display:block;height:100vh;"></canvas>
+</div>
+
+<script>
+(function(){
+  const cv=document.getElementById('gol');
+  cv.height=window.innerHeight;
+  const cx=cv.getContext('2d');
+  const W=360,H=cv.height,S=7;
+  const C=Math.floor(W/S),R=Math.floor(H/S),N=C*R;
+
+  function h(a,b){const x=Math.sin(a*127.1+b*311.7)*43758.5;return x-Math.floor(x);}
+
+  const cRx=new Float32Array(N),cRy=new Float32Array(N),cRot=new Float32Array(N),cPh=new Float32Array(N);
+  for(let c=0;c<C;c++)for(let r=0;r<R;r++){
+    const i=r*C+c,base=1.8+h(c,r)*0.65;
+    cRx[i]=base*(0.9+h(c+5,r)*0.2);
+    cRy[i]=base*(0.9+h(c,r+5)*0.2);
+    cRot[i]=h(c+3,r+7)*Math.PI;
+    cPh[i]=h(c+9,r+2)*Math.PI*2;
+  }
+
+  let grid=new Uint8Array(N),op=new Float32Array(N);
+  let lastTick=0,fading=false,tickCount=0,prevLive=0,stagnant=0,seedIndex=0;
+
+  const TICK=1350, MX=0.55, FD=0.011, LAV='163,155,178';
+  const cc=Math.floor(C/2), rc=Math.floor(R/2);
+
+  const SEEDS=[
+    [[0,1],[1,0],[1,1],[1,2],[2,1],[0,2],[2,0]],
+    [[0,1],[1,0],[2,1],[1,2],[0,0],[2,2],[1,3],[3,1]],
+    [[1,0],[0,1],[1,1],[2,1],[1,2],[0,2],[2,0],[2,2],[0,0]],
+    [[0,1],[1,2],[2,1],[1,0],[1,1],[2,2],[0,0],[3,1],[1,3]],
+  ];
+
+  function placeSym(dc,dr){
+    [[cc+dc,rc+dr],[cc-dc,rc+dr],[cc+dc,rc-dr],[cc-dc,rc-dr]].forEach(([c,r])=>{
+      if(c>=0&&c<C&&r>=0&&r<R)grid[r*C+c]=1;
+    });
+  }
+
+  function seed(){
+    grid.fill(0);op.fill(0);prevLive=0;stagnant=0;tickCount=0;
+    const s=SEEDS[seedIndex%SEEDS.length];seedIndex++;
+    s.forEach(([dc,dr])=>placeSym(dc,dr));
+    for(let dc=-1;dc<=1;dc++)for(let dr=-1;dr<=1;dr++)
+      if(Math.random()<0.18)placeSym(dc+4,dr);
+  }
+
+  function step(){
+    const nx=new Uint8Array(N);
+    for(let c=0;c<C;c++)for(let r=0;r<R;r++){
+      let n=0;
+      for(let dc=-1;dc<=1;dc++)for(let dr=-1;dr<=1;dr++){
+        if(!dc&&!dr)continue;
+        const nc=c+dc,nr=r+dr;
+        if(nc>=0&&nc<C&&nr>=0&&nr<R)n+=grid[nr*C+nc];
+      }
+      const a=grid[r*C+c];
+      nx[r*C+c]=a?(n===2||n===3?1:0):(n===3?1:0);
+    }
+    grid=nx;
+    const live=grid.reduce((s,v)=>s+v,0);
+    if(live===prevLive)stagnant++;else{stagnant=0;prevLive=live;}
+    tickCount++;
+  }
+
+  function leftmost(){
+    for(let c=0;c<C;c++)for(let r=0;r<R;r++)if(grid[r*C+c])return c;
+    return C;
+  }
+
+  function allGone(){
+    for(let i=0;i<N;i++)if(op[i]>0.014)return false;
+    return true;
+  }
+
+  function frame(ts){
+    for(let i=0;i<N;i++){
+      const pulse=MX+Math.sin(ts*0.00042+cPh[i])*0.06;
+      const tgt=(!fading&&grid[i])?pulse:0;
+      if(op[i]<tgt)op[i]=Math.min(tgt,op[i]+FD);
+      else if(op[i]>tgt)op[i]=Math.max(0,op[i]-FD);
+    }
+    cx.clearRect(0,0,W,H);
+    for(let c=0;c<C;c++)for(let r=0;r<R;r++){
+      const i=r*C+c,o=op[i];
+      if(o>0.01){
+        cx.beginPath();
+        cx.ellipse(c*S+S*.5,r*S+S*.5,cRx[i],cRy[i],cRot[i],0,Math.PI*2);
+        cx.fillStyle=`rgba(${LAV},${o.toFixed(3)})`;
+        cx.fill();
+      }
+    }
+    if(!fading){
+      if(ts-lastTick>TICK){
+        lastTick=ts;
+        const lm=leftmost();
+        if((tickCount>8&&lm<=1)||lm===C||stagnant>14)fading=true;
+        else step();
+      }
+    }else if(allGone()){
+      seed();fading=false;lastTick=ts+800;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  seed();requestAnimationFrame(frame);
+})();
+</script>
+
+</main>
+</body>
+</html>
